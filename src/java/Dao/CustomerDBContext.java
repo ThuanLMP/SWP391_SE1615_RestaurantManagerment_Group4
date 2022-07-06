@@ -17,6 +17,28 @@ import java.util.ArrayList;
  */
 public class CustomerDBContext extends DBContext {
 
+    public void updateCustomerById(int id, Customer customer) {
+
+        try {
+            String sql = "UPDATE [Customer]\n"
+                    + "   SET	cname = ?\n"
+                    + "		,gmail = ?\n"
+                    + "		,cphone = ?\n"
+                    + " WHERE cid=?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, customer.getName());
+            st.setString(2, customer.getGmail());
+            st.setString(3, customer.getPhone());
+            st.setInt(4, id);
+            
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
     public Customer getCustomerByPhone(String cphone) {
 
         try {
@@ -38,6 +60,7 @@ public class CustomerDBContext extends DBContext {
         }
         return null;
     }
+
     public Customer getCustomerById(int id) {
 
         try {
@@ -98,7 +121,11 @@ public class CustomerDBContext extends DBContext {
 
     public static void main(String[] args) {
         CustomerDBContext db = new CustomerDBContext();
-       Customer c =db.getCustomerById(12);
-        System.out.println(c.getName());
+        Customer c = new Customer();
+        c.setName("mrchekout");
+        c.setGmail("mrchecka@gmail.com");
+        c.setPhone("01");
+        db.updateCustomerById(12, c);
+
     }
 }

@@ -21,6 +21,26 @@ import java.util.ArrayList;
  */
 public class OrderDBContext extends DBContext {
 
+    public void updateOrderById(Order order) {
+
+        try {
+            String sql = "UPDATE [Order]\n"
+                    + "   SET [tid] = ?\n"
+                    + "      ,[total] = ?\n"
+                    + " WHERE oid=?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, order.getTable().getId());
+            st.setDouble(2, order.getTotal());
+            st.setInt(3, order.getId());
+           
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
     public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();
         try {

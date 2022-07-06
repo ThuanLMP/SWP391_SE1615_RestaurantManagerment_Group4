@@ -16,8 +16,9 @@ import java.util.ArrayList;
  * @author ITACHI
  */
 public class TableDBContext extends DBContext {
-    public ArrayList<Table> getAllTables(){
-         ArrayList<Table> tables = new ArrayList<>();
+
+    public ArrayList<Table> getAllTables() {
+        ArrayList<Table> tables = new ArrayList<>();
         try {
             String sql = "select * from [Table]";
             PreparedStatement st = connection.prepareStatement(sql);
@@ -75,13 +76,14 @@ public class TableDBContext extends DBContext {
         return tables;
     }
 
-    public void updateStatusTable(String id) {
+    public void updateStatusTable(String id, String status) {
         try {
             String sql = "UPDATE [Table]\n"
-                    + "SET status = 0\n"
+                    + "SET status = ?\n"
                     + "where tid = ?";
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, id);
+            st.setString(1, status);
+            st.setString(2, id);
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -110,7 +112,6 @@ public class TableDBContext extends DBContext {
 
     public static void main(String[] args) {
         TableDBContext db = new TableDBContext();
-        ArrayList<Table> tables = db.getAllTables();
-        System.out.println(tables.size());
+        db.updateStatusTable("S01", "0");
     }
 }

@@ -19,6 +19,18 @@ import java.util.ArrayList;
  */
 public class Order_itemDBContext extends DBContext {
 
+    public void deleteOrderItemsByOrderId(int orderId) {
+        String sql = "DELETE FROM [Order_Items]\n"
+                + "      WHERE oid=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, orderId);
+            st.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
     public void insertOrderItems(Order order, ArrayList<Product> products) {
         String sql = "INSERT INTO Order_Items (oid, mid,amount,sumPrice)\n"
                 + "VALUES (?, ?, ?, ?);";
@@ -32,13 +44,12 @@ public class Order_itemDBContext extends DBContext {
                 st.executeUpdate();
             }
 
-            
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
-     public ArrayList<Product> getProductsByOrderId(int oid) {
+
+    public ArrayList<Product> getProductsByOrderId(int oid) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "select*from Order_Items where oid = ?";
@@ -48,7 +59,7 @@ public class Order_itemDBContext extends DBContext {
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("mid"));
-                product.setName(rs.getString("amount"));
+                product.setAmount(rs.getInt("amount"));
                 product.setSumPrice(rs.getDouble("sumPrice"));
                 products.add(product);
             }
@@ -57,13 +68,13 @@ public class Order_itemDBContext extends DBContext {
         }
         return products;
     }
-     
+
     public static void main(String[] args) {
         Order_itemDBContext db = new Order_itemDBContext();
         ArrayList<Product> p = db.getProductsByOrderId(34);
-        for(Product pro:p){
+        for (Product pro : p) {
             System.out.println(pro.getSumPrice());
         }
     }
-    
+
 }

@@ -61,11 +61,11 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         ProductDBContext dbp = new ProductDBContext();
-
         String table_draw = request.getParameter("table");
         TableDBContext dbt = new TableDBContext();
-        dbt.updateStatusTable(table_draw);
+        dbt.updateStatusTable(table_draw,"0");
         Table tb = dbt.getTableById(table_draw);
         int seat = tb.getSeat();
 
@@ -179,6 +179,7 @@ public class OrderController extends HttpServlet {
         
 
         ArrayList<Product> product_items = new ArrayList<>();
+        
         for (Product p : products) {
             p.setSumPrice(p.getAmount() * p.getPrice());
             if (p.getAmount() != 0) {

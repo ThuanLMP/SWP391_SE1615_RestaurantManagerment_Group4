@@ -4,6 +4,9 @@
     Author     : ITACHI
 --%>
 
+<%@page import="java.util.Deque"%>
+<%@page import="Model.Customer"%>
+<%@page import="Model.Product"%>
 <%@page import="Model.Table"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -184,18 +187,24 @@
                 }
             }
         </style>
-        <% ArrayList<Table> tables = (ArrayList<Table>) request.getAttribute("tables"); %>
+        <% 
+            
+            ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+            Customer customer = (Customer) session.getAttribute("customer");
+            Deque<Table> tables = (Deque<Table>) session.getAttribute("tables");
+        
+        %>
     </head>
 
     <body>
 
         <main class="page">
-            <form action="../home/order" method="POST">
+            <form action="editOrder" method="POST">
                 <section class="shopping-cart dark">
 
                     <div class="container">
                         <div class="block-heading">
-                            <h2>Order Food</h2>
+                            <h2>Edit Order</h2>
                         </div>
                         <div class="content">
                             <div class="row">
@@ -209,9 +218,9 @@
                                         </select>
                                         <div class="customer">
 
-                                            Name Customer  : <input required type="text" maxlength="50" name="name" pattern="^[a-zA-Z]{1-15}"/> <br>
-                                            Gmail Customer : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
-                                            Phone Customer: <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
+                                            Name Customer  : <input required type="text" maxlength="50" name="name" pattern="^[a-zA-Z]{1-15}" value="<%=customer.getName()%>"/> <br>
+                                            Gmail Customer : <input required  id="gmail" maxlength="50" type="email" name="gmail" value="<%=customer.getGmail()%>"/> <br>
+                                            Phone Customer: <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone" value="<%=customer.getPhone()%>"/>
                                         </div>
 
                                     </div>
@@ -239,16 +248,16 @@
                                                             </div>
                                                             <div class="col-md-4 quantity">
                                                                 <label for="quantity">Số lượng</label>
-                                                                <input id="quantity-0" type="number" min="0" max="1000" maxlength="3" name="buffe1" value="0" 
+                                                                <input id="quantity-0" type="number" min="0" max="1000" maxlength="3" name="buffe1" value="<%=products.get(0).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf1()" class="form-control quantity-input">
-                                                                <input id="quantity-1" type="number" min="0" max="1000" maxlength="3" name="buffe2" value="0"
+                                                                <input id="quantity-1" type="number" min="0" max="1000" maxlength="3" name="buffe2" value="<%=products.get(1).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf2()" class="form-control quantity-input">
-                                                                <input id="quantity-2" type="number" min="0" max="1000" maxlength="3" name="buffe3" value="0"
+                                                                <input id="quantity-2" type="number" min="0" max="1000" maxlength="3" name="buffe3" value="<%=products.get(2).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf3()" class="form-control quantity-input">
-                                                                <input id="quantity-3" type="number" min="0" max="1000" maxlength="3" name="buffe4" value="0"
+                                                                <input id="quantity-3" type="number" min="0" max="1000" maxlength="3" name="buffe4" value="<%=products.get(3).getAmount()%>"
                                                                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf4()" class="form-control quantity-input">
                                                             </div>
@@ -256,10 +265,10 @@
                                                                 <div class="product-name">
                                                                     <a href="#">Thành tiền</a>
                                                                     <div class="all-value">
-                                                                        <p class="money" id="bf-1">0 VND</p>
-                                                                        <p class="money" id="bf-2">0 VND</p>
-                                                                        <p class="money" id="bf-3">0 VND</p>
-                                                                        <p class="money" id="bf-4">0 VND</p>
+                                                                        <p class="money" id="bf-1"><%=products.get(0).getAmount()*120%>.000 VND</p>
+                                                                        <p class="money" id="bf-2"><%=products.get(1).getAmount()*150%>.000 VND</p>
+                                                                        <p class="money" id="bf-3"><%=products.get(2).getAmount()*200%>.000 VND</p>
+                                                                        <p class="money" id="bf-4"><%=products.get(3).getAmount()*400%>.000 VND</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -291,16 +300,16 @@
                                                             </div>
                                                             <div class="col-md-4 quantity">
                                                                 <label for="quantity">Số lượng</label>
-                                                                <input id="quantity-4" type="number" min="0" max="1000" maxlength="3" name="potato" value="0"
+                                                                <input id="quantity-4" type="number" min="0" max="1000" maxlength="3" name="potato" value="<%=products.get(4).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calTm1()" class="form-control quantity-input">
-                                                                <input id="quantity-5" type="number" min="0" max="1000" maxlength="3" name="salat" value="0"
+                                                                <input id="quantity-5" type="number" min="0" max="1000" maxlength="3" name="salat" value="<%=products.get(5).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calTm2()" class="form-control quantity-input">
-                                                                <input id="quantity-6" type="number" min="0" max="1000" maxlength="3" name="chickenW" value="0"
+                                                                <input id="quantity-6" type="number" min="0" max="1000" maxlength="3" name="chickenW" value="<%=products.get(6).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calTm3()" class="form-control quantity-input">
-                                                                <input id="quantity-7" type="number" min="0" max="1000" maxlength="3" name="chickenT" value="0"
+                                                                <input id="quantity-7" type="number" min="0" max="1000" maxlength="3" name="chickenT" value="<%=products.get(7).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calTm4()" class="form-control quantity-input">
                                                             </div>
@@ -308,10 +317,10 @@
                                                                 <div class="product-name">
                                                                     <a href="#">Thành tiền</a>
                                                                     <div class="all-value">
-                                                                        <p class="money" id="tm-1">0 VND</p>
-                                                                        <p class="money" id="tm-2">0 VND</p>
-                                                                        <p class="money" id="tm-3">0 VND</p>
-                                                                        <p class="money" id="tm-4">0 VND</p>
+                                                                        <p class="money" id="tm-1"><%=products.get(4).getAmount()*20%>.000 VND</p>
+                                                                        <p class="money" id="tm-2"><%=products.get(5).getAmount()*30%>.000 VND</p>
+                                                                        <p class="money" id="tm-3"><%=products.get(6).getAmount()*35%>.000 VND</p>
+                                                                        <p class="money" id="tm-4"><%=products.get(7).getAmount()*40%>.000 VND</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -342,16 +351,16 @@
                                                             </div>
                                                             <div class="col-md-4 quantity">
                                                                 <label for="quantity">Số lượng</label>
-                                                                <input id="quantity-8" type="number" min="0" max="1000" maxlength="3" name="cocacola" value="0"
+                                                                <input id="quantity-8" type="number" min="0" max="1000" maxlength="3" name="cocacola" value="<%=products.get(8).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calDr1()" class="form-control quantity-input">
-                                                                <input id="quantity-9" type="number" min="0" max="1000" maxlength="3" name="pepsi" value="0"
+                                                                <input id="quantity-9" type="number" min="0" max="1000" maxlength="3" name="pepsi" value="<%=products.get(9).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calDr2()" class="form-control quantity-input">
-                                                                <input id="quantity-10" type="number" min="0" max="1000" maxlength="3" name="aquafina" value="0"
+                                                                <input id="quantity-10" type="number" min="0" max="1000" maxlength="3" name="aquafina" value="<%=products.get(10).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calDr3()" class="form-control quantity-input">
-                                                                <input id="quantity-11" type="number" min="0" max="1000" maxlength="3" name="beer" value="0"
+                                                                <input id="quantity-11" type="number" min="0" max="1000" maxlength="3" name="beer" value="<%=products.get(11).getAmount()%>"
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calDr4()" class="form-control quantity-input">
                                                             </div>
@@ -359,10 +368,10 @@
                                                                 <div class="product-name">
                                                                     <a href="#">Thành tiền</a>
                                                                     <div class="product-info">
-                                                                        <p class="money" id="dr-1">0 VND</p>
-                                                                        <p class="money" id="dr-2">0 VND</p>
-                                                                        <p class="money" id="dr-3">0 VND</p>
-                                                                        <p class="money" id="dr-4">0 VND</p>
+                                                                        <p class="money" id="dr-1"><%=products.get(8).getAmount()*15%>.000 VND</p>
+                                                                        <p class="money" id="dr-2"><%=products.get(9).getAmount()*15%>.000 VND</p>
+                                                                        <p class="money" id="dr-3"><%=products.get(10).getAmount()*10%>.000 VND</p>
+                                                                        <p class="money" id="dr-4"><%=products.get(11).getAmount()*12%>.000 VND</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -375,10 +384,11 @@
 
 
                                     </div>
+                                                                    
                                     <div class="accept-order">
-                                        <a class="btn btn-primary btn-lg btn-block" href="../home_employee">Quay lại</a>
-
+                                        <a class="btn btn-primary btn-lg btn-block" href="home/table_checking">Quay lại</a>
                                     </div>
+                                                                    
                                 </div>
 
                                 <div class="col-md-12 col-lg-5">
@@ -394,75 +404,75 @@
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Lẩu 1</span>
-                                            <span id="amount-1" class="amount col-md-3">0</span>
-                                            <span id="price-1" class="price col-md-5">0</span>
+                                            <span id="amount-1" class="amount col-md-3"><%=products.get(0).getAmount()%></span>
+                                            <span id="price-1" class="price col-md-5"><%=products.get(0).getAmount()*120%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Lẩu 2</span>
-                                            <span id="amount-2" class="amount col-md-3">0</span>
-                                            <span id="price-2" class="price col-md-5">0</span>
+                                            <span id="amount-2" class="amount col-md-3"><%=products.get(1).getAmount()%></span>
+                                            <span id="price-2" class="price col-md-5"><%=products.get(1).getAmount()*150%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Lẩu 3</span>
-                                            <span id="amount-3" class="amount col-md-3">0</span>
-                                            <span id="price-3" class="price col-md-5">0</span>
+                                            <span id="amount-3" class="amount col-md-3"><%=products.get(2).getAmount()%></span>
+                                            <span id="price-3" class="price col-md-5"><%=products.get(2).getAmount()*200%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Lẩu 4</span>
-                                            <span id="amount-4" class="amount col-md-3">0</span>
-                                            <span id="price-4" class="price col-md-5">0</span>
+                                            <span id="amount-4" class="amount col-md-3"><%=products.get(3).getAmount()%></span>
+                                            <span id="price-4" class="price col-md-5"><%=products.get(3).getAmount()*400%>.000 VND</span>
                                         </div>
 
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Khoai tây</span>
-                                            <span id="amount-5" class="amount col-md-3">0</span>
-                                            <span id="price-5" class="price col-md-5">0</span>
+                                            <span id="amount-5" class="amount col-md-3"><%=products.get(4).getAmount()%></span>
+                                            <span id="price-5" class="price col-md-5"><%=products.get(4).getAmount()*20%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Salat rau</span>
-                                            <span id="amount-6" class="amount col-md-3">0</span>
-                                            <span id="price-6" class="price col-md-5">0</span>
+                                            <span id="amount-6" class="amount col-md-3"><%=products.get(5).getAmount()%></span>
+                                            <span id="price-6" class="price col-md-5"><%=products.get(5).getAmount()*30%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Cánh gà</span>
-                                            <span id="amount-7" class="amount col-md-3">0</span>
-                                            <span id="price-7" class="price col-md-5">0</span>
+                                            <span id="amount-7" class="amount col-md-3"><%=products.get(6).getAmount()%></span>
+                                            <span id="price-7" class="price col-md-5"><%=products.get(6).getAmount()*35%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Đùi gà</span>
-                                            <span id="amount-13" class="amount col-md-3">0</span>
-                                            <span id="price-13" class="price col-md-5">0</span>
+                                            <span id="amount-13" class="amount col-md-3"><%=products.get(7).getAmount()%></span>
+                                            <span id="price-13" class="price col-md-5"><%=products.get(7).getAmount()*40%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Cocacola</span>
-                                            <span id="amount-8" class="amount col-md-3">0</span>
-                                            <span id="price-8" class="price col-md-5">0</span>
+                                            <span id="amount-8" class="amount col-md-3"><%=products.get(8).getAmount()%></span>
+                                            <span id="price-8" class="price col-md-5"><%=products.get(8).getAmount()*15%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Pepsi</span>
-                                            <span id="amount-9" class="amount col-md-3">0</span>
-                                            <span id="price-9" class="price col-md-5">0</span>
+                                            <span id="amount-9" class="amount col-md-3"><%=products.get(9).getAmount()%></span>
+                                            <span id="price-9" class="price col-md-5"><%=products.get(9).getAmount()*15%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Aquafina</span>
-                                            <span id="amount-10" class="amount col-md-3">0</span>
-                                            <span id="price-10" class="price col-md-5">0</span>
+                                            <span id="amount-10" class="amount col-md-3"><%=products.get(10).getAmount()%></span>
+                                            <span id="price-10" class="price col-md-5"><%=products.get(10).getAmount()*10%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Beer</span>
-                                            <span id="amount-11" class="amount col-md-3">0</span>
-                                            <span id="price-11" class="price col-md-5">0</span>
+                                            <span id="amount-11" class="amount col-md-3"><%=products.get(11).getAmount()%></span>
+                                            <span id="price-11" class="price col-md-5"><%=products.get(11).getAmount()*12%>.000 VND</span>
                                         </div>
 
                                         <div class="summary-item row">

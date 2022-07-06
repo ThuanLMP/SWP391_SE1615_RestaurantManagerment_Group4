@@ -81,6 +81,7 @@
                                        <p>Trạng thái: Trống</p>
                                 <% } %>
                             </div>
+                            
                             <div class="col-12 col-md-4 text-center edit">
                                 <%
                                     int check011 = 0;
@@ -263,7 +264,7 @@
                                 %>
 
                                   <form action="../editOrder" method="GET">
-                                    <input name="id" value="M01" type="hidden"/>
+                                    <input name="id" value="M04" type="hidden"/>
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
