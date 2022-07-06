@@ -3,23 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/EditProController.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Edit_Order.jsp</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/OrderDBContext.java</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/LoginController.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/LogoutController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/PaymentController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/Order_itemDBContext.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/ProfileController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/AccountDBContext.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Table_Checking_4.jsp</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/HomeEmployeeController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Table_Checking_10.jsp</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/OrderController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Model/Order.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Order.jsp</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/EditProController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/EditProfile.jsp</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/LoginController.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/TableCheckingController.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/HomeAdminController.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/EditOrderTableController.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/ProductDBContext.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Home_Admin.jsp</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Profile.jsp</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/Order_itemDBContext.java</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/ProfileController.java</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/AccountDBContext.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/CustomerDBContext.java</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/ManagerDBContext.java</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Controller/OrderController.java</file>
-            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Model/Order.java</file>
+            <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/web/Table_Checking_6.jsp</file>
             <file>file:/C:/LearnFPT/Term_5/SWP391/Project_Final/SWP391_SE1615_RestaurantManagerment_Group4/src/java/Dao/TableDBContext.java</file>
         </group>
     </open-files>

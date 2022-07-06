@@ -100,7 +100,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S01" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
@@ -162,10 +162,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                 <form action="../payment" method="GET">
                                     <input name="id" value="S02" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
 
                                 <% }
                                     }
@@ -222,10 +223,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S03" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check031 == 0) { %>
@@ -278,10 +280,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S04" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check041 == 0) { %>
@@ -333,10 +336,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                 <form action="../payment" method="GET">
                                     <input name="id" value="S05" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check051 == 0) { %>
@@ -391,10 +395,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S06" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check061 == 0) { %>
@@ -449,10 +454,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S07" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check071 == 0) { %>
@@ -507,10 +513,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                 <form action="../payment" method="GET">
                                     <input name="id" value="S08" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check081 == 0) { %>
@@ -562,10 +569,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                 <form action="../payment" method="GET">
                                     <input name="id" value="S09" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check091 == 0) { %>
@@ -619,10 +627,11 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="S10" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
+
                                 <% }
                                     }
                                     if (check101 == 0) { %>

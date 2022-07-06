@@ -104,37 +104,38 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Revenue</div>
+                                    <div class="card-body">Doanh thu hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <h3>100.000</h3>
+                                        
+                                        <div class="small text-white"> </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Customer</div>
+                                    <div class="card-body">Khách hàng hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <h3>20</h3>
+                                        <div class="small text-white"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Employee Active</div>
+                                    <div class="card-body">Hóa đơn đã thanh toán hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <h3>26</h3>
+                                        <div class="small text-white"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Table Active</div>
+                                    <div class="card-body">Bàn đang hoạt động</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <h3>7</h3>
+                                        <div class="small text-white"></div>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +144,7 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        Revenue Chart
+                                        Biểu đồ doanh thu
                                     </div>
                                     <canvas id="bar-chart" width="800" height="450"></canvas>
                                 </div>
@@ -151,7 +152,7 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        Customer Chart
+                                        Biểu đồ khách hàng
                                     </div>
                                     <canvas id="bar1-chart" width="800" height="450"></canvas>
                                 </div>
@@ -160,18 +161,16 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                List Order
+                                Danh sách hóa đơn đã thanh toán hôm nay
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>Order ID</th>
-                                            <th>Customer Name</th>
+                                            <th>Tên khách hàng</th>
                                             <th>Table ID</th>
-                                            <th>Time</th>
-                                            <th>Date</th>
-                                            <th>Number of Customer</th>
+                                            <th>Thời gian</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -211,12 +210,12 @@
             new Chart(document.getElementById("bar-chart"), {
                 type: 'bar',
                 data: {
-                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America", "Thuan"],
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
                     datasets: [
                         {
-                            label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323"],
-                            data: [2478, 5267, 734, 784, 433, 788]
+                            label: "Doanh thu (triệu VND)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323","#c15850","#c49840","#c42050","#c45110","#c23850","#c45320"],
+                            data: [2478, 5267, 734, 784, 433, 788,0,0,0,0,0,0]
                         }
                     ]
                 },
@@ -231,12 +230,12 @@
              new Chart(document.getElementById("bar1-chart"), {
                 type: 'bar',
                 data: {
-                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America", "Thuan"],
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
                     datasets: [
                         {
-                            label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323"],
-                            data: [2478, 5267, 734, 784, 433, 788]
+                            label: "Khách hàng (người)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323","#c15850","#c49840","#c42050","#c45110","#c23850","#c45320"],
+                            data: [2478, 5267, 734, 784, 433, 788,0,0,0,0,0,0]
                         }
                     ]
                 },
@@ -244,7 +243,7 @@
                     legend: {display: false},
                     title: {
                         display: true,
-                        text: 'Doanh thu năm 2022'
+                        text: 'Khách hàng năm 2022'
                     }
                 }
             });

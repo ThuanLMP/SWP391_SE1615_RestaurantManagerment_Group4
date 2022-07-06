@@ -11,6 +11,7 @@ import Model.Table;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -18,12 +19,15 @@ import java.util.ArrayList;
  * @author ITACHI
  */
 public class ManagerDBContext extends DBContext {
-    public ArrayList<Order> getOrdersByDay(Date Date) {
+    
+    public ArrayList<Order> getOrdersByDayAndStatus(Date Date,String status) {
         ArrayList<Order> orders = new ArrayList<>();
         try {
             String sql = "select*from [Order] \n"
-                    + "where [date] = ? ";
+                    + "where [date] = ? and isStatus = ? ";
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setDate(1, Date);
+            st.setString(2, status);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
@@ -37,11 +41,18 @@ public class ManagerDBContext extends DBContext {
                 o.setDate(rs.getDate("date"));
                 o.setTime(rs.getTime("time"));
                 o.setIsStatus(rs.getBoolean("isStatus"));
+                o.setTotal(rs.getDouble("total"));
                 orders.add(o);
             }
         } catch (Exception ex) {
             System.out.println(ex);
         }
         return orders;
+    }
+    public static void main(String[] args) {
+        ManagerDBContext db = new ManagerDBContext();
+        LocalDate date = java.time.LocalDate.now();
+        ArrayList<Order> orders = db.getOrdersByDayAndStatus(Date.valueOf(date), "0");
+        System.out.println(orders.size());
     }
 }

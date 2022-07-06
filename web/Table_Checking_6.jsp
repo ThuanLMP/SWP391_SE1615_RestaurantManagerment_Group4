@@ -95,7 +95,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="M01" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
@@ -152,7 +152,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                              <form action="../payment" method="GET">
                                     <input name="id" value="M02" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
@@ -209,7 +209,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="M03" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
@@ -268,7 +268,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="M04" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
@@ -325,7 +325,7 @@
                                     <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                                <form>
+                                <form action="../payment" method="GET">
                                     <input name="id" value="M05" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>

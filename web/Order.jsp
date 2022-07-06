@@ -155,7 +155,8 @@
 
             }
             input{
-                margin-bottom: 5px;
+                margin-bottom: 10px;
+                margin-left: 10px;
             }
 
             @media (min-width: 768px) {
@@ -208,10 +209,10 @@
                                             <%}%>
                                         </select>
                                         <div class="customer">
-
-                                            Name Customer  : <input required type="text" maxlength="50" name="name" pattern="^[a-zA-Z]{1-15}"/> <br>
-                                            Gmail Customer : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
-                                            Phone Customer: <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
+                                            
+                                            Tên &ensp; : <input required type="text" maxlength="50" name="name" pattern="^[a-zA-Z]{1-15}"/> <br>
+                                            Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
+                                            SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>
 
                                     </div>

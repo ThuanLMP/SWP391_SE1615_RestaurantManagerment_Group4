@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import Dao.ManagerDBContext;
+import Model.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +34,18 @@ public class HomeAdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ManagerDBContext dbm = new ManagerDBContext();
+        LocalDate date = java.time.LocalDate.now();
+        ArrayList<Order> ordersTodayDone = dbm.getOrdersByDayAndStatus(Date.valueOf(date), "0");
+        ArrayList<Order> ordersTodayActive = dbm.getOrdersByDayAndStatus(Date.valueOf(date), "1");
+        double revenueToday = 0;
+        for(Order o:ordersTodayDone){
+            revenueToday += o.getTotal();
+        }
+        
+        int sumOrderDoneToday = ordersTodayDone.size();
+        int sumOrderActive = ordersTodayActive.size();
+        
         request.getRequestDispatcher("Home_Admin.jsp").forward(request, response);
        
     }
