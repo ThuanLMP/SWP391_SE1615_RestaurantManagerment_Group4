@@ -4,6 +4,8 @@
     Author     : ITACHI
 --%>
 
+<%@page import="Model.Order"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +21,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <%
+            ArrayList<Double> revenueList = (ArrayList<Double>) request.getAttribute("revenueList");
+            ArrayList<Integer> sumBfIdList = (ArrayList<Integer>) request.getAttribute("sumBfId");
+            ArrayList<Order> orderTodayDone = (ArrayList<Order>) request.getAttribute("orderTodayDone");
+            ArrayList<Order> orderTodayActive = (ArrayList<Order>) request.getAttribute("orderTodayActive");
+        %>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -106,15 +114,15 @@
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Doanh thu hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h3>100.000</h3>
-                                        
+                                        <h3><%=revenueList.get(0) / 100000%> triệu VND</h3>
+
                                         <div class="small text-white"> </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Khách hàng hôm nay</div>
+                                    <div class="card-body">Lợi nhuận tháng này</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <h3>20</h3>
                                         <div class="small text-white"></div>
@@ -125,7 +133,7 @@
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">Hóa đơn đã thanh toán hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h3>26</h3>
+                                        <h3><%=orderTodayDone.size()%></h3>
                                         <div class="small text-white"></div>
                                     </div>
                                 </div>
@@ -134,7 +142,7 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">Bàn đang hoạt động</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h3>7</h3>
+                                        <h3><%=orderTodayActive.size()%></h3>
                                         <div class="small text-white"></div>
                                     </div>
                                 </div>
@@ -154,7 +162,7 @@
                                     <div class="card-header">
                                         Biểu đồ khách hàng
                                     </div>
-                                    <canvas id="bar1-chart" width="800" height="450"></canvas>
+                                    <canvas id="pie-chart" width="800" height="450"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -168,24 +176,31 @@
                                     <thead>
                                         <tr>
                                             <th>Order ID</th>
-                                            <th>Tên khách hàng</th>
                                             <th>Table ID</th>
                                             <th>Thời gian</th>
+                                            <th>Tổng tiền</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Order ID</th>
-                                            <th>Customer Name</th>
+                                           <th>Order ID</th>
                                             <th>Table ID</th>
-                                            <th>Time</th>
-                                            <th>Date</th>
-                                            <th>Number of Customer</th>
+                                            <th>Thời gian</th>
+                                            <th>Tổng tiền</th>
                                         </tr>
                                     </tfoot>
-                                    
+                                            
                                     <tbody>
-                                        
+                                        <% for(Order o:orderTodayDone){ %>
+                                        <tr>
+                                            <th><%=o.getId()%></th>
+                                            <th><%=o.getTable().getId()%></th>
+                                            <th><%=o.getTime()%></th>
+                                            <th><%=o.getTotal()%></th>
+                                        </tr>                                            
+                                        <%   
+                                        }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -210,12 +225,12 @@
             new Chart(document.getElementById("bar-chart"), {
                 type: 'bar',
                 data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     datasets: [
                         {
                             label: "Doanh thu (triệu VND)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323","#c15850","#c49840","#c42050","#c45110","#c23850","#c45320"],
-                            data: [2478, 5267, 734, 784, 433, 788,0,0,0,0,0,0]
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323", "#c15850", "#c49840", "#c42050", "#c45110", "#c23850", "#c45320"],
+                            data: [<%=revenueList.get(1) / 1000000%>,<%=revenueList.get(2) / 1000000%>, <%=revenueList.get(3) / 1000000%>, <%=revenueList.get(4) / 1000000%>, <%=revenueList.get(5) / 1000000%>, <%=revenueList.get(6) / 1000000%>, <%=revenueList.get(7) / 1000000%>, <%=revenueList.get(8) / 1000000%>, <%=revenueList.get(9) / 1000000%>, <%=revenueList.get(10) / 1000000%>, <%=revenueList.get(11) / 1000000%>, <%=revenueList.get(12) / 1000000%>]
                         }
                     ]
                 },
@@ -227,26 +242,25 @@
                     }
                 }
             });
-             new Chart(document.getElementById("bar1-chart"), {
-                type: 'bar',
+
+            new Chart(document.getElementById("pie-chart"), {
+                type: 'pie',
                 data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-                    datasets: [
-                        {
-                            label: "Khách hàng (người)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c21323","#c15850","#c49840","#c42050","#c45110","#c23850","#c45320"],
-                            data: [2478, 5267, 734, 784, 433, 788,0,0,0,0,0,0]
-                        }
-                    ]
+                    labels: ["Buffet 120k", "Buffet 150k", "Buffet 200k", "Buffet 400k"],
+                    datasets: [{
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                            data: [<%=sumBfIdList.get(0)%>, <%=sumBfIdList.get(1)%>, <%=sumBfIdList.get(2)%>, <%=sumBfIdList.get(3)%>]
+                        }]
                 },
                 options: {
-                    legend: {display: false},
                     title: {
                         display: true,
-                        text: 'Khách hàng năm 2022'
+                        text: 'Biểu đồ sở thích của khách hàng tháng 7'
                     }
                 }
             });
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

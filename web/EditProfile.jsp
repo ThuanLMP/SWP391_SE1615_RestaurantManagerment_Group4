@@ -64,8 +64,9 @@
                 border: solid 1px #BA68C8
             }
 
-            <%  Employee emp = (Employee) request.getAttribute("employee");%>
+            
         </style>
+        <%  Employee emp = (Employee) request.getAttribute("employee");%>
     </head>
 
     <body>
