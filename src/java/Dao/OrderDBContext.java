@@ -40,6 +40,21 @@ public class OrderDBContext extends DBContext {
         }
 
     }
+    
+    public void updateStatusOrderById(String id){
+        try {
+            String sql = "UPDATE [Order]\n"
+                    + "   SET isStatus = ?\n"
+                    + " WHERE oid=?";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setBoolean(1, false);
+            st.setString(2, id);          
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
     public ArrayList<Order> getOrders() {
         ArrayList<Order> orders = new ArrayList<>();

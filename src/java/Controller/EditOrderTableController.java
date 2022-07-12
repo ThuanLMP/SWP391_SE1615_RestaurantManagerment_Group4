@@ -59,10 +59,13 @@ public class EditOrderTableController extends HttpServlet {
         Table tb = dbt.getTableById(tid);
         ArrayList<Table> tbs = dbt.getTablesByStatus(true);
         Deque<Table> tables = new LinkedList<>();
+        
         for (Table t : tbs) {
             tables.add(t);
         }
+        
         tables.addFirst(tb);
+        
         ArrayList<Product> productsForm = dbp.getProducts();
 
         for (int i = 0; i < productsForm.size(); i++) {
