@@ -36,7 +36,7 @@ public class HomeAdminController extends HttpServlet {
         for (Order o : ordersTodayDone) {
             revenueToday += o.getTotal();
         }
-        System.out.println(revenueToday);
+        
 
         int sumOrderDoneToday = ordersTodayDone.size();
         int sumOrderActive = ordersTodayActive.size();
@@ -141,6 +141,22 @@ public class HomeAdminController extends HttpServlet {
         sumBfIdList.add(sumBuffe3);
         sumBfIdList.add(sumBuffe4);
         
+        //get profit
+        int sumSalary = dbm.getSumSalary(Date.valueOf("2022-06-01"), Date.valueOf("2022-07-01"));
+        int sumImport = dbm.getSumImport(Date.valueOf("2022-06-01"), Date.valueOf("2022-07-01"));
+        ArrayList<Order> ordersMonthBefore = dbm.getOrdersByDate(Date.valueOf("2022-06-01"), Date.valueOf("2022-07-01"), "0");
+        System.out.println(ordersMonthBefore.size());
+        double revenueMonthBefore = 0;
+        
+        for(Order o:ordersMonthBefore){
+            revenueMonthBefore = revenueMonthBefore + o.getTotal();
+        }
+        
+        int profit = (int) revenueMonthBefore-sumImport-sumSalary;
+        ArrayList<Integer> profitList = new ArrayList<>();
+        profitList.add(profit);
+        
+        request.setAttribute("profit", profitList);
         request.setAttribute("orderTodayDone", ordersTodayDone);
         request.setAttribute("orderTodayActive", ordersTodayActive);
         request.setAttribute("sumBfId", sumBfIdList);

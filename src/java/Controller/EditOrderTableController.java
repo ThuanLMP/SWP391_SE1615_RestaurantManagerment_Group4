@@ -44,6 +44,7 @@ public class EditOrderTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String tid = request.getParameter("id");
 
         OrderDBContext dbo = new OrderDBContext();

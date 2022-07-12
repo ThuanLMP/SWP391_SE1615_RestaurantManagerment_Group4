@@ -24,6 +24,7 @@
         <%
             ArrayList<Double> revenueList = (ArrayList<Double>) request.getAttribute("revenueList");
             ArrayList<Integer> sumBfIdList = (ArrayList<Integer>) request.getAttribute("sumBfId");
+            ArrayList<Integer> profit = (ArrayList<Integer>) request.getAttribute("profit");
             ArrayList<Order> orderTodayDone = (ArrayList<Order>) request.getAttribute("orderTodayDone");
             ArrayList<Order> orderTodayActive = (ArrayList<Order>) request.getAttribute("orderTodayActive");
         %>
@@ -114,7 +115,7 @@
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Doanh thu hôm nay</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h3><%=revenueList.get(0) / 100000%> triệu VND</h3>
+                                        <h3><%=revenueList.get(0) / 1000000%> triệu VND</h3>
 
                                         <div class="small text-white"> </div>
                                     </div>
@@ -122,9 +123,9 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Lợi nhuận tháng này</div>
+                                    <div class="card-body">Lợi nhuận tháng trước</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h3>20</h3>
+                                        <h3><%=profit.get(0)/1000000%> triệu VND</h3>
                                         <div class="small text-white"></div>
                                     </div>
                                 </div>

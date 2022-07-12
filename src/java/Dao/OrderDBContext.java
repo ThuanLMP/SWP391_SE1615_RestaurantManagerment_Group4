@@ -114,7 +114,7 @@ public class OrderDBContext extends DBContext {
 
     public static void main(String[] args) {
         OrderDBContext db = new OrderDBContext();
-        Order o = db.getOrderByTableId("S02");
-        System.out.println(o);
+        Order o = db.getOrderByTableId("S01");
+        System.out.println(o.getCustomer().getId());
     }
 }

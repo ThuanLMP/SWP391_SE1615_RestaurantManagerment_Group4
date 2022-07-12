@@ -20,6 +20,45 @@ import java.util.ArrayList;
  */
 public class ManagerDBContext extends DBContext {
 
+    public ArrayList salaryOfEmployeeByMonth(Date date) {
+        return null;
+    }
+
+    public int getSumSalary(Date startDate, Date endDate) {
+        int sumSalary = 0;
+        try {
+            String sql = "select SUM(totalSalary) as sum from Salary where date >= ? and date < ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setDate(1, startDate);
+            st.setDate(2, endDate);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                sumSalary = rs.getInt("sum");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return sumSalary;
+    }
+
+    public int getSumImport(Date startDate, Date endDate) {
+        int sumImport = 0;
+        try {
+            String sql = "select SUM(total) as sum from Import\n"
+                    + "where date>= ? and date < ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setDate(1, startDate);
+            st.setDate(2, endDate);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                sumImport = rs.getInt("sum");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return sumImport;
+    }
+
     public int getSumByBuffe(int buffeId, Date date) {
         int sumBuffe = 0;
 
@@ -30,7 +69,7 @@ public class ManagerDBContext extends DBContext {
             st.setDate(1, date);
             st.setInt(2, buffeId);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 sumBuffe = rs.getInt("sum");
             }
         } catch (Exception e) {
@@ -103,7 +142,7 @@ public class ManagerDBContext extends DBContext {
 
     public static void main(String[] args) {
         ManagerDBContext db = new ManagerDBContext();
-       int sum = db.getSumByBuffe(1,Date.valueOf("2022-07-01"));
+        int sum = db.getSumImport(Date.valueOf("2022-06-01"), Date.valueOf("2022-07-01"));
         System.out.println(sum);
     }
 }

@@ -30,24 +30,33 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         // get table id 
-        String tableId = (String) request.getParameter("table");
+        String tableId = (String) request.getParameter("id");
+        
         // get Order by id Table
         OrderDBContext dbo = new OrderDBContext();
         Order order = dbo.getOrderByTableId(tableId);
         
+        
         // get Order Items by id Order
         Order_itemDBContext dboi = new  Order_itemDBContext();
         ArrayList<Product> products = dboi.getProductsByOrderId(order.getId());
+        
+        
         // get Customer by id Order
         CustomerDBContext dbc = new CustomerDBContext();
         Customer customer = dbc.getCustomerById(order.getCustomer().getId());
+        
         // load data to session
          HttpSession session = request.getSession();
          session.setAttribute("order_pay",order);
          session.setAttribute("products_pay", products );
          session.setAttribute("customer_pay", customer);
+        
         // send to payment.jsp
+        
+        request.getRequestDispatcher("Payment.jsp").forward(request, response);
     }
 
    
