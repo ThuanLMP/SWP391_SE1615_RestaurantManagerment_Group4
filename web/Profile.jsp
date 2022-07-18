@@ -175,7 +175,7 @@
                     <form action="profile/edit" method="GET" >
                         <input type="hidden" name="name" value="<%=emps.getName()%>"/>
                         <input type="hidden" name="gmail" value="<%=emps.getGmail()%>" />
-                        <input type="submit" class="profile-edit-btn" value="Edit Profile" />
+                        <input type="submit" class="profile-edit-btn" value="Chỉnh sửa" />
                     </form>
 
                 </div>
@@ -183,7 +183,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-work">
-                        <p>WORK LINK</p>
+                        <p>LINK</p>
                         <a href="">Link FaceBook</a><br />
                         <a href="">Link Zalo</a><br />
                         <a href="">Link IG</a>
@@ -200,7 +200,7 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Full Name</label>
+                                    <label>Tên</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p><%=emps.getName()%></p>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Phone</label>
+                                    <label>SDT</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p><%=emps.getPhone()%></p>

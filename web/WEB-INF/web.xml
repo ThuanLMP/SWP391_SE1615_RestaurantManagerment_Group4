@@ -44,6 +44,10 @@
         <servlet-name>PaymentController</servlet-name>
         <servlet-class>Controller.PaymentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingController</servlet-name>
+        <servlet-class>Controller.BookingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeAdminController</servlet-name>
         <url-pattern>/home_admin</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>PaymentController</servlet-name>
         <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingController</servlet-name>
+        <url-pattern>/home/booking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

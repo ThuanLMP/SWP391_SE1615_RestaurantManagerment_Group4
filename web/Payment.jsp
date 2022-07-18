@@ -20,6 +20,7 @@
         <link href=" https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/style.css">
         <script src=”js/scripts.js”></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
         <style>
             .shopping-cart {
                 padding-bottom: 50px;
@@ -339,9 +340,9 @@
                                 <h3 class="mt-5 ml-5">Hình thức thanh toán</h3>
 
                                 <div class="mt-5 ml-4">
-                                    <button type="button" class="btn btn-secondary" onclick="click01()">Tiền mặt</button>
-                                    <button type="button" class="btn btn-success" onclick="click02()">Chuyển khoản</button>
-                                    <button type="button" class="btn btn-danger" onclick="click03()">Quẹt thẻ</button>
+                                    <button type="button" class="btn btn-secondary" onclick="click01()"> <i class="bi bi-cash-coin"></i> Tiền mặt</button>
+                                    <button type="button" class="btn btn-success" onclick="click02()"> <i class="bi bi-bank"></i> Chuyển khoản</button>
+                                    <button type="button" class="btn btn-danger" onclick="click03()"> <i class="bi bi-wallet-fill"></i> Quẹt thẻ</button>
                                 </div>
 
                                 <div class="banking mt-5 ml-4" id="banking">
@@ -425,12 +426,15 @@
         <script>
 
           function checkclick() {
+              alert("Thanh toán thành công");
+              /*
             var result = confirm("Bạn có chắc chắn thanh toán ?");
             if (result == true) {
                 alert("Thanh toán thành công");
             } else {
                 alert("Thanh toán thất bại");
             }
+            */
         }
 
             function caculateCash() {

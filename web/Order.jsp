@@ -196,7 +196,7 @@
 
                     <div class="container">
                         <div class="block-heading">
-                            <h2>Order Food</h2>
+                            <h2>Gọi đồ ăn cho khách hàng</h2>
                         </div>
                         <div class="content">
                             <div class="row">
@@ -210,7 +210,7 @@
                                         </select>
                                         <div class="customer">
                                             
-                                            Tên &ensp; : <input required type="text" maxlength="50" name="name" pattern="[a-zA-z]{1,15}"/> <br>
+                                            Tên &ensp; : <input id="input" required type="text" maxlength="50" name="name"/> <br>
                                             Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
                                             SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>
@@ -384,7 +384,7 @@
 
                                 <div class="col-md-12 col-lg-5">
                                     <div class="summary">
-                                        <h3>Summary</h3>
+                                        <h3>Tóm tắt</h3>
 
                                         <div class="summary-item row">
                                             <span class="text col-md-4">Sản phẩm</span>
@@ -478,7 +478,7 @@
 
 
                                         <div class="All Orders">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Thanh toán</button>
                                         </div>
 
 
@@ -503,7 +503,7 @@
     <script>
 
         
-
+        
         function calSum() {
             var a = document.getElementById("quantity-0").value;
             var a1 = a * 120;

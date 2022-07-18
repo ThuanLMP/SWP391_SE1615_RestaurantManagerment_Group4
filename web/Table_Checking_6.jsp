@@ -19,7 +19,7 @@
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-         <%
+        <%
             ArrayList<Table> tables = (ArrayList<Table>) session.getAttribute("tables");
         %>
     </head>
@@ -30,13 +30,13 @@
         <div class="container">
             <div>
                 <form action="order" method="GET">
-                    <button type="submit" class="btn btn-info">Quay lại Order</button>
+                    <button type="submit" class="btn btn-info">Quay lại gọi món</button>
                 </form>
 
             </div>
 
             <div class="ml-5">
-                <h1 class="mt-4">List Table</h1>
+                <h1 class="mt-4">Danh sách bàn ăn</h1>
 
                 <div class="table">
                     <form action="../home/table_checking" method="POST">
@@ -65,23 +65,31 @@
                                 </h4>
                             </div>
                             <div class="col-12 col-md-4">
-                                <p>ID:M01</p>
-                                <%                            
+                                <p class="text-dark">ID:M01</p>
+                                <%
                                     int check01 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M01") && t.isStatus() == false) {
                                             check01 = 1;
                                 %>
-                                
-                                <p>Hoạt động</p>
+
+                                <div class=" ml-3 border border-success ">
+                                    <span class="text-success m-2 active">
+                                        Hoạt động
+                                    </span>
+                                </div>
 
                                 <% }
                                     }
                                     if (check01 == 0) { %>
-                                       <p>Trạng thái: Trống</p>
+                                <div class=" ml-3 border  border-danger ">
+                                    <span class="text-danger m-2 active">
+                                        Trống
+                                    </span>
+                                </div>
                                 <% } %>
                             </div>
-                            
+
                             <div class="col-12 col-md-4 text-center edit">
                                 <%
                                     int check011 = 0;
@@ -90,9 +98,9 @@
                                             check011 = 1;
                                 %>
 
-                                  <form action="../editOrder" method="GET">
+                                <form action="../editOrder" method="GET">
                                     <input name="id" value="M01" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -102,8 +110,11 @@
                                 <% }
                                     }
                                     if (check011 == 0) { %>
-                                <a href="../editOrder"
-                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Booking
+                                <a href="../home/booking"
+                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
+                                </a>
+                                <a href="../home/order"
+                                   class="f-n-hover btn btn-info btn-raised px-4 py-25 w-100 text-600 mb-1">Gọi món
                                 </a>
                                 <% } %>
                             </div>
@@ -123,44 +134,55 @@
                                 </h4>
                             </div>
                             <div class="col-12 col-md-4">
-                                <p>ID:M02</p>
-                               <%                            
+                                <p class="text-dark">ID:M02</p>
+                                <%
                                     int check02 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M02") && t.isStatus() == false) {
                                             check02 = 1;
                                 %>
-                                
-                                <p>Hoạt động</p>
+
+                                <div class=" ml-3 border border-success ">
+                                    <span class="text-success m-2 active">
+                                        Hoạt động
+                                    </span>
+                                </div>
 
                                 <% }
                                     }
                                     if (check02 == 0) { %>
-                                       <p>Trạng thái: Trống</p>
+                                <div class=" ml-3 border  border-danger ">
+                                    <span class="text-danger m-2 active">
+                                        Trống
+                                    </span>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="col-12 col-md-4 text-center edit">
-                                 <%
+                                <%
                                     int check021 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M02") && t.isStatus() == false) {
                                             check021 = 1;
                                 %>
 
-                                  <form action="../editOrder" method="GET">
+                                <form action="../editOrder" method="GET">
                                     <input name="id" value="M02" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
-                              <form action="../payment" method="GET">
+                                <form action="../payment" method="GET">
                                     <input name="id" value="M02" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
                                 <% }
                                     }
                                     if (check021 == 0) { %>
-                                <a href="../editOrder"
-                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Booking
+                                <a href="../home/booking"
+                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
+                                </a>
+                                <a href="../home/order"
+                                   class="f-n-hover btn btn-info btn-raised px-4 py-25 w-100 text-600 mb-1">Gọi món
                                 </a>
                                 <% } %>
                             </div>
@@ -180,20 +202,28 @@
                                 </h4>
                             </div>
                             <div class="col-12 col-md-4">
-                                <p>ID:M03</p>
-                                <%                            
+                                <p class="text-dark">ID:M03</p>
+                                <%
                                     int check03 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M03") && t.isStatus() == false) {
                                             check03 = 1;
                                 %>
-                                
-                                <p>Hoạt động</p>
+
+                                <div class=" ml-3 border border-success ">
+                                    <span class="text-success m-2 active">
+                                        Hoạt động
+                                    </span>
+                                </div>
 
                                 <% }
                                     }
                                     if (check03 == 0) { %>
-                                       <p>Trạng thái: Trống</p>
+                                <div class=" ml-3 border  border-danger ">
+                                    <span class="text-danger m-2 active">
+                                        Trống
+                                    </span>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="col-12 col-md-4 text-center edit">
@@ -204,9 +234,9 @@
                                             check031 = 1;
                                 %>
 
-                                  <form action="../editOrder" method="GET">
+                                <form action="../editOrder" method="GET">
                                     <input name="id" value="M03" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover  btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -216,8 +246,11 @@
                                 <% }
                                     }
                                     if (check031 == 0) { %>
-                                <a href="../editOrder"
-                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Booking
+                                <a href="../home/booking"
+                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
+                                </a>
+                                <a href="../home/order"
+                                   class="f-n-hover btn btn-info btn-raised px-4 py-25 w-100 text-600 mb-1">Gọi món
                                 </a>
                                 <% } %>
                             </div>
@@ -239,20 +272,28 @@
                                 </h4>
                             </div>
                             <div class="col-12 col-md-4">
-                                <p>ID:M04</p>
-                                <%                            
+                                <p class="text-dark">ID:M04</p>
+                                <%
                                     int check04 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M04") && t.isStatus() == false) {
                                             check04 = 1;
                                 %>
-                                
-                                <p>Hoạt động</p>
+
+                                <div class=" ml-3 border border-success ">
+                                    <span class="text-success m-2 active">
+                                        Hoạt động
+                                    </span>
+                                </div>
 
                                 <% }
                                     }
                                     if (check04 == 0) { %>
-                                       <p>Trạng thái: Trống</p>
+                                <div class=" ml-3 border  border-danger ">
+                                    <span class="text-danger m-2 active">
+                                        Trống
+                                    </span>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="col-12 col-md-4 text-center edit">
@@ -263,9 +304,9 @@
                                             check041 = 1;
                                 %>
 
-                                  <form action="../editOrder" method="GET">
+                                <form action="../editOrder" method="GET">
                                     <input name="id" value="M04" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -275,8 +316,11 @@
                                 <% }
                                     }
                                     if (check041 == 0) { %>
-                                <a href="../editOrder"
-                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Booking
+                                <a href="../home/booking"
+                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
+                                </a>
+                                <a href="../home/order"
+                                   class="f-n-hover btn btn-info btn-raised px-4 py-25 w-100 text-600 mb-1">Gọi món
                                 </a>
                                 <% } %>
                             </div>
@@ -296,20 +340,28 @@
                                 </h4>
                             </div>
                             <div class="col-12 col-md-4">
-                                <p>ID:M05</p>
-                                <%                            
+                                <p class="text-dark">ID:M05</p>
+                                <%
                                     int check05 = 0;
                                     for (Table t : tables) {
                                         if (t.getId().equals("M05") && t.isStatus() == false) {
                                             check05 = 1;
                                 %>
-                                
-                                <p>Hoạt động</p>
+
+                                <div class=" ml-3 border border-success ">
+                                    <span class="text-success m-2 active">
+                                        Hoạt động
+                                    </span>
+                                </div>
 
                                 <% }
                                     }
                                     if (check05 == 0) { %>
-                                       <p>Trạng thái: Trống</p>
+                                <div class=" ml-3 border  border-danger ">
+                                    <span class="text-danger m-2 active">
+                                        Trống
+                                    </span>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="col-12 col-md-4 text-center edit">
@@ -320,9 +372,9 @@
                                             check021 = 1;
                                 %>
 
-                                  <form action="../editOrder" method="GET">
+                                <form action="../editOrder" method="GET">
                                     <input name="id" value="M05" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -332,10 +384,13 @@
                                 <% }
                                     }
                                     if (check051 == 0) { %>
-                                <a href="../editOrder"
-                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Booking
+                                <a href="../home/booking"
+                                   class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
                                 </a>
-                                <% } %>
+                                <a href="../home/order"
+                                   class="f-n-hover btn btn-info btn-raised px-4 py-25 w-100 text-600 mb-1">Gọi món
+                                </a>
+                                <% }%>
                             </div>
                         </div>
 
