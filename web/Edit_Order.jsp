@@ -218,7 +218,7 @@
                                         </select>
                                         <div class="customer">
 
-                                            Tên &ensp; : <input required type="text" maxlength="50" name="name" pattern="^[a-zA-Z]{1-15}"/> <br>
+                                            Tên &ensp; : <input required type="text" maxlength="50" name="name" pattern="[a-z]{1,15}"/> <br>
                                             Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
                                             SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>

@@ -79,14 +79,14 @@ public class PaymentController extends HttpServlet {
             throws ServletException, IOException {
        String orderId = request.getParameter("orderId");
        String tableId = request.getParameter("tableId");
-        System.out.println(orderId);
-        System.out.println(tableId);
        OrderDBContext dbo = new OrderDBContext();
        TableDBContext dbt = new TableDBContext();
        
        dbt.updateStatusTable(tableId,"1");
        dbo.updateStatusOrderById(orderId);
        
+       response.sendRedirect("home/table_checking");
+      
     }
 
     /**

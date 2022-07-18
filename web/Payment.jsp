@@ -409,7 +409,7 @@
                                     <div class="mt-5">
                                         <input type="hidden" value="<%=order.getId()%>" name="orderId">
                                         <input type="hidden" value="<%=order.getTable().getId()%>" name="tableId">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Hoàn thành</button>
+                                        <button type="submit"  onclick="checkclick()" class="btn btn-primary btn-lg btn-block">Hoàn thành</button>
                                     </div>
                                 </form>
 
@@ -423,6 +423,15 @@
             </section>
         </main>
         <script>
+
+          function checkclick() {
+            var result = confirm("Bạn có chắc chắn thanh toán ?");
+            if (result == true) {
+                alert("Thanh toán thành công");
+            } else {
+                alert("Thanh toán thất bại");
+            }
+        }
 
             function caculateCash() {
 

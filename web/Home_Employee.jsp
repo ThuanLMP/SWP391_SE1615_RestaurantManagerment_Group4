@@ -95,7 +95,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <form action="home/order" method="GET"> 
                                     <div class="card bg-warning text-white mb-4">
-                                        <input class="card-body" type="submit" value="Order"/>
+                                        <input class="card-body btn-warning" type="submit" value="Order"/>
                                     </div>
                                     
                                 </form>
@@ -103,7 +103,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <form action="home/table_checking" method="GET"> 
                                     <div class="card bg-warning text-white mb-4">
-                                        <input class="card-body" type="submit" value="Information Table"/>
+                                        <input class="card-body btn-warning" type="submit" value="Information Table"/>
                                     </div>
                                     
                                 </form>

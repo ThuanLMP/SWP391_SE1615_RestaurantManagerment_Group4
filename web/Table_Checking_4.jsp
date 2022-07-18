@@ -51,6 +51,7 @@
 
             </div>
             <div class="row mb-3">
+                
                 <div class="mt-5 content-1 mr-4">
 
                     <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm">

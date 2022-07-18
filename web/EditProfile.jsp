@@ -84,20 +84,20 @@
                 <div class="col-md-8 border-right">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
+                            <h4 class="text-right">Chỉnh sửa thông tin</h4>
                         </div>
                         
                         <form action="edit" method="POST">
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <label class="labels">Name</label> 
-                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>" pattern="^[a-zA-Z]{1-15}" required>
+                                    <label class="labels">Tên</label> 
+                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>" pattern="[a-zA-z]{1,15}" required>
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <label class="labels">PhoneNumber</label>
+                                    <label class="labels">Số điện thoại</label>
                                     <input type="text" inputmode=numeric pattern="\d*" class="form-control" placeholder="Enter phone number" name="phone"  value="<%=emp.getPhone()%>" required>
                                 </div>
 
