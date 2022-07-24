@@ -218,9 +218,9 @@
                                         </select>
                                         <div class="customer">
 
-                                            Tên &ensp; : <input required type="text" maxlength="50" name="name" pattern="[a-z]{1,15}"/> <br>
-                                            Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
-                                            SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
+                                            Tên &ensp; : <input required type="text" value="<%=customer.getName()%>" maxlength="50" name="name" pattern="[a-z]{1,15}"/> <br>
+                                            Gmail : <input required  id="gmail" value="<%=customer.getGmail()%>" maxlength="50" type="email" name="gmail"/> <br>
+                                            SDT &ensp; :   <input required  type="text" value="<%=customer.getPhone()%>" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>
 
                                     </div>

@@ -210,7 +210,7 @@
                                         </select>
                                         <div class="customer">
                                             
-                                            Tên &ensp; : <input id="input" required type="text" maxlength="50" name="name"/> <br>
+                                            Tên &ensp; : <input required type="text" maxlength="50" name="name"/> <br>
                                             Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
                                             SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>

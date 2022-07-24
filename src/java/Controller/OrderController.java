@@ -44,6 +44,7 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         TableDBContext db = new TableDBContext();
         ArrayList<Table> tables = db.getTablesByStatus(true);
         request.setAttribute("tables", tables);

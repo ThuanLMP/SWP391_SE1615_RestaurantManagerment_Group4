@@ -91,7 +91,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <label class="labels">Tên</label> 
-                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>" pattern="[a-zA-z]{1,15}" required>
+                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>" pattern="^[a-zA-z]{1,15}" required>
                                 </div>
                             </div>
 

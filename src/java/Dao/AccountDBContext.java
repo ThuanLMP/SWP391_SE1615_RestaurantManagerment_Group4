@@ -9,13 +9,14 @@ import Model.Account;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author ITACHI
  */
 public class AccountDBContext extends DBContext {
-     public Account login(String user, String pass) {
+    public Account login(String user, String pass) {
         try {
             String sql = "select * from Account where username=? and password=?";
             PreparedStatement st=connection.prepareStatement(sql);            
@@ -28,9 +29,26 @@ public class AccountDBContext extends DBContext {
                         rs.getString(2));
             }
         } catch (Exception ex) {
-            System.out.println(ex);
+            return new Account("error",null);
         }
         return null;
+    }
+
+
+
+
+
+      public void addAcount(String username, String pass) {
+        String sql = "insert into Account (username,password) values (?,?) ";
+        AccountDBContext a = new AccountDBContext();
+         try{
+            PreparedStatement st=connection.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, pass);
+            st.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
     }
 
     
@@ -56,6 +74,24 @@ public class AccountDBContext extends DBContext {
         }
     }
     
+    public ArrayList<Account> getAccounts() {
+        ArrayList<Account> emps = new ArrayList<>();
+        try {
+            String sql = "select * from Account";
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Account e = new Account();
+                e.setUser(rs.getString("username"));
+                e.setPass(rs.getString("password"));
+                emps.add(e);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return emps;
+    }
+
     public static void main(String[] args) {
         AccountDBContext dao = new AccountDBContext();
         Account a = new Account();

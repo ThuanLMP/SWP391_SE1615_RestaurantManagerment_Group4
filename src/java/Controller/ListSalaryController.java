@@ -5,9 +5,18 @@
  */
 package Controller;
 
+
+import Dao.AttendenceDBContext;
+import Dao.EmployeeDBContext;
+import Dao.SalaryDBContext;
+import Model.Attendence;
+import Model.Employee;
+import Model.Salary;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,31 +24,31 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ITACHI
+ * @author win
  */
-public class LogoutController extends HttpServlet {
 
-   
+public class ListSalaryController extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
+
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-         session.setAttribute("eid",null);
-         session.setAttribute("account", null);
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
-
-
-
+        session.setAttribute("listSal", null);
+        SalaryDBContext omp = new SalaryDBContext();
+        ArrayList<Salary> o = omp.getSalaryUnPaid();
+        EmployeeDBContext emp = new EmployeeDBContext();
+        ArrayList<Employee> listE = emp.getEmployees();
+        if(o.isEmpty()==true){
+            for (int i = 0; i < listE.size(); i++) {
+                omp.addSalaryUnPaid(listE.get(i));
+            }            
+        }
+        o = omp.getSalaryUnPaid();
+        session.setAttribute("listSal", o);
+        request.getRequestDispatcher("ListSalary.jsp").forward(request, response);
     }
 
     /**
@@ -53,7 +62,7 @@ public class LogoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       
     }
 
     /**
@@ -67,3 +76,6 @@ public class LogoutController extends HttpServlet {
     }// </editor-fold>
 
 }
+
+
+

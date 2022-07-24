@@ -6,16 +6,16 @@
 package Controller;
 
 import Dao.AttendenceDBContext;
-import Dao.EmployeeDBContext;
 import Dao.SalaryDBContext;
 import Model.Attendence;
-import Model.Employee;
+import Model.Salary;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,28 +28,28 @@ import javax.servlet.http.HttpSession;
  *
  * @author ITACHI
  */
-public class HomeEmployeeController extends HttpServlet {
+public class AttendenceController extends HttpServlet {
 
-    @Override
+    
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String eid = (String) session.getAttribute("eid");
+        String eid = (String)session.getAttribute("eid");
         LocalDate date_raw = java.time.LocalDate.now();
         Date date = Date.valueOf(date_raw);
-        EmployeeDBContext ed = new EmployeeDBContext();
-        Employee e = ed.getEmployeeById(eid);
-        session.setAttribute("emp", e);
         session.setAttribute("today", date);
         AttendenceDBContext sd = new AttendenceDBContext();
         ArrayList<Attendence> s = sd.getAttenByEid(eid);
-
-        if (s.isEmpty() == false) {
-            session.setAttribute("attenEmp", s.get(s.size() - 1).getDate());
+        
+        
+        if(s.isEmpty() == false){
+            session.setAttribute("attenEmp",s.get(s.size()-1).getDate());
             session.setAttribute("listAtten", s);
-        } else {
-            session.setAttribute("attenEmp", null);
+        }else{
+            session.setAttribute("attenEmp",null);
         }
+        
         request.getRequestDispatcher("Home_Employee.jsp").forward(request, response);
     }
 
@@ -68,18 +68,20 @@ public class HomeEmployeeController extends HttpServlet {
         String eid = request.getParameter("eid");
         SalaryDBContext sb = new SalaryDBContext();
         AttendenceDBContext sd = new AttendenceDBContext();
-
+        
         sb.addDayWork(eid);
         sd.takeAtten(eid);
-
+        
         sb.addDayWork(eid);
         LocalDate date_raw = java.time.LocalDate.now();
         Date date = Date.valueOf(date_raw);
         ArrayList<Attendence> s = sd.getAttenByEid(eid);
         session.setAttribute("listAtten", s);
-        session.setAttribute("attenEmp", date);
+        session.setAttribute("attenEmp",date);
         request.getRequestDispatcher("Home_Employee.jsp").forward(request, response);
     }
+
+
 
     @Override
     public String getServletInfo() {
