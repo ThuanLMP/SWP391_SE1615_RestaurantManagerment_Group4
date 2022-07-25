@@ -25,6 +25,9 @@
     </head>
 
     <body>
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
         <div class="container">
@@ -381,8 +384,7 @@
                                     <input name="id" value="M05" type="hidden"/>
                                     <input class="f-n-hover btn btn-warning btn-raised px-4 py-25 w-100 text-600" type="submit" value="Thanh toán" />
                                 </form>
-                                <% }
-                                    }
+                                <% 
                                     if (check051 == 0) { %>
                                 <a href="../home/booking"
                                    class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1">Đặt bàn
@@ -570,6 +572,7 @@
         <script type="text/javascript">
 
         </script>
+        <%}%>
     </body>
 
 </html>

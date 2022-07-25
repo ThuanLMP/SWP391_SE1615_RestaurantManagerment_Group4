@@ -117,7 +117,15 @@ public class EditOrderTableController extends HttpServlet {
         
         //Update Customer
         String nameCustomer = request.getParameter("name").trim();
-        String gmailCustomer = request.getParameter("gmail").trim();
+        
+        if (nameCustomer.isEmpty()) {
+            session.setAttribute("messedit", "Vui lòng nhập tên khách hàng");
+            
+            
+            response.sendRedirect("editOrder?id="+table_before);
+        }
+        else{
+               String gmailCustomer = request.getParameter("gmail").trim();
         String phoneCustomer = request.getParameter("phone").trim();
         
         Customer customer_after = new Customer();
@@ -195,6 +203,8 @@ public class EditOrderTableController extends HttpServlet {
         session.removeAttribute("products");
         session.removeAttribute("customer");
         response.sendRedirect("home/table_checking");
+        }
+     
         
     }
 

@@ -186,10 +186,13 @@
             }
         </style>
         <% ArrayList<Table> tables = (ArrayList<Table>) request.getAttribute("tables"); %>
+        <% String mess = (String) session.getAttribute("messorder"); %>
     </head>
 
     <body>
-
+        <% if (session.getAttribute("account") == null) {
+        request.getRequestDispatcher("login").forward(request, response);%>
+        <%} else {%>
         <main class="page">
             <form action="../home/order" method="POST">
                 <section class="shopping-cart dark">
@@ -209,8 +212,12 @@
                                             <%}%>
                                         </select>
                                         <div class="customer">
-                                            
+
                                             Tên &ensp; : <input required type="text" maxlength="50" name="name"/> <br>
+                                            <% if (mess != null) {%>
+                                            <p style="color: red; font-size: 12px" ><%=mess%></p>
+                                            <%} else {%>
+                                            <%}%> 
                                             Gmail : <input required  id="gmail" maxlength="50" type="email" name="gmail"/> <br>
                                             SDT &ensp; :   <input required  type="text" maxlength="20" inputmode=numeric pattern="\d*" name="phone"/>
                                         </div>
@@ -250,7 +257,7 @@
                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf3()" class="form-control quantity-input">
                                                                 <input id="quantity-3" type="number" min="0" max="1000" maxlength="3" name="buffe4" value="0"
-                                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                        onchange="calBf4()" class="form-control quantity-input">
                                                             </div>
                                                             <div class="col-md-4 product-name">
@@ -502,8 +509,8 @@
     </body>
     <script>
 
-        
-        
+
+
         function calSum() {
             var a = document.getElementById("quantity-0").value;
             var a1 = a * 120;
@@ -641,6 +648,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <%}%>
 </body>
 
 </html>

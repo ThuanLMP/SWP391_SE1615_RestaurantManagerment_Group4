@@ -1,3 +1,5 @@
+
+<%@page import="Model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,33 +10,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Restaurant Management -  Admin</title>
+        <title>Restaurant Management -  Employee</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <%
+            Account account = (Account) session.getAttribute("account");
+        %>
     </head>
     <body class="sb-nav-fixed">
-        <% if (session.getAttribute("account") == null) {
-                request.getRequestDispatcher("login").forward(request, response);%>
-        <%} else {%>
-
-
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <c:if test="${sessionScope.account.user == 'admin'}">
-                <a class="navbar-brand ps-3" href="home_admin">Nhà hàng-Quản lý</a>
+            <a class="navbar-brand ps-3" href="home_admin">Nhà hàng-Quản lý</a>
             </c:if>
             <c:if test="${sessionScope.account.user != 'admin'}">
-                <a class="navbar-brand ps-3" href="home_employee">Nhà hàng-Nhân viên</a>
+            <a class="navbar-brand ps-3" href="home_employee">Nhà hàng-Nhân viên</a>
             </c:if>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    
                     
                 </div>
             </form>
@@ -43,81 +45,79 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <c:if test="${sessionScope.account.user == 'admin'}">
-                            <li><a class="dropdown-item" href="profile">Thông tin cá nhân</a></li>
-                            </c:if>
-                        <li><a class="dropdown-item" href="changepass">Đổi mật khẩu</a></li>
-                        <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="changepass">Change Password</a></li>
+                        <li><a class="dropdown-item" href="logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
         <div id="layoutSidenav">
             <c:if test="${sessionScope.account.user == 'admin'}">
-                 <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Quản lý danh sách</div>
-                            <a class="nav-link" href="listOr">
-                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-                                Danh sách hóa đơn
-                            </a>
-                            <a class="nav-link" href="listEmp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-                                Danh sách nhân viên
-                            </a>
-                             <a class="nav-link" href="listAcc">
-                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-                                Danh sách tài khoản
-                            </a>
-                             <a class="nav-link" href="listMenu">
-                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-                                Danh sách món ăn
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Quản lý tài chính</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
-                                Doanh thu
-                            </a>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-coins"></i></div>
-                                Lợi nhuận
-                            </a>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
-                                Chi phí
-                            </a>
-                             <a class="nav-link" href="listSalary">
-                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
-                                Lương chưa thanh toán
-                            </a>
-                            <a class="nav-link" href="listSalP">
-                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
-                                Lương đã thanh toán
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Khác</div>
-                           
-                            <a class="nav-link" href="import">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Nhập hàng
-                            </a>
-                            <a class="nav-link" href="feedback">
-                                <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
-                                Phản hồi
-                            </a>
-                           
+                <div id="layoutSidenav_nav">
+                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                <div class="sb-sidenav-menu-heading">Quản lý danh sách</div>
+                                <a class="nav-link" href="listOr">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                    Danh sách hóa đơn
+                                </a>
+                                <a class="nav-link" href="listEmp">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                    Danh sách nhân viên
+                                </a>
+                                <a class="nav-link" href="listAcc">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                    Danh sách tài khoản
+                                </a>
+                                <a class="nav-link" href="listMenu">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                    Danh sách món ăn
+                                </a>
+                                <div class="sb-sidenav-menu-heading">Quản lý tài chính</div>
+                                <a class="nav-link" href="index.html">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
+                                    Doanh thu
+                                </a>
+                                <a class="nav-link" href="index.html">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-coins"></i></div>
+                                    Lợi nhuận
+                                </a>
+                                <a class="nav-link" href="index.html">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                                    Chi phí
+                                </a>
+                                <a class="nav-link" href="listSalary">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                                    Lương chưa thanh toán
+                                </a>
+                                <a class="nav-link" href="listSalP">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
+                                    Lương đã thanh toán
+                                </a>
+                                <div class="sb-sidenav-menu-heading">Khác</div>
+
+                                <a class="nav-link" href="import">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Nhập hàng
+                                </a>
+                                <a class="nav-link" href="feedback">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                                    Phản hồi
+                                </a>
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        ADMIN
-                    </div>
-                </nav>
-            </div>
+                        <div class="sb-sidenav-footer">
+                            <div class="small">Logged in as:</div>
+                            ADMIN
+                        </div>
+                    </nav>
+                </div>
             </c:if>
             <c:if test="${sessionScope.account.user != 'admin'}">
-                <div id="layoutSidenav_nav">
+           <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -156,51 +156,47 @@
             </div>
             </c:if>
 
+
             <div id="layoutSidenav_content">
-                <main> 
+                <main>
+
                     <div class="card-body">
+                        <c:if test="${sessionScope.account.user == 'admin'}">
+                            <a class="btn btn-dark" href="addMenu">Thêm món</a>
+                        </c:if>
+
                         <table id="datatablesSimple">
 
                             <hr>
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ngày</th>
-                                    <th>Thời gian</th>
-                                    <th>Bàn</th>
-                                    <th>Trạng thái</th>
-                                    <th>Tổng tiền</th>
+                                    <th>Tên món</th>
+                                    <th>Giá</th>
+                                    <th>Khác</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ngày</th>
-                                    <th>Thời gian</th>
-                                    <th>Bàn</th>
-                                    <th>Trạng thái</th>
-                                    <th>Tổng tiền</th>
+                                    <th>Tên món</th>
+                                    <th>Giá</th>
+                                    <th>Khác</th>
                                 </tr>
                             </tfoot>
                             <tbody>
 
-                                <c:forEach items="${listOrder}" var="e">
+                                <c:forEach items="${listMenu}" var="m">
                                     <tr>
-                                        <td>${e.id}</td>
-                                        <td>${e.date}</td>
-                                        <td>${e.time}</td>
-                                        <td>${e.table.id}</td>
-                                        <td>
-                                            <c:if test="${e.isStatus == false}">
-                                                Đã thanh toán
-                                            </c:if>
-                                            <c:if test="${e.isStatus == true}">
-                                                Chưa thanh toán
-                                            </c:if>
-                                        </td>
 
+                                        <td>${m.mid}</td>
+                                        <td>${m.mname}</td>
+                                        <td>${m.price}</td>
+                                        <c:if test="${sessionScope.account.user == 'admin'}">
+                                            <td> <button class="btn btn-success" ><a onclick="deleteM('${m.mid}')">Xóa</a></button>
+                                                <a class="btn btn-danger" href ="updateMenu?mid=${m.mid}">Chỉnh sửa</a></td>
+                                            </c:if>
 
-                                        <td>${e.total/1000}K</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -228,8 +224,20 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <%}%>
+    <%}%>
     </body>
+    <script type="text/javascript">
+                                                function deleteM(id) {
+
+                                                    if (confirm("Bạn có chắn chắn xóa nhân viên này ?")) {
+                                                        window.location = "deleteMenu?mid=" + id;
+                                                    }
+
+
+                                                }
+                                                ;
+    </script> 
 </html>
+
 
 

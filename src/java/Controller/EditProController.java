@@ -54,38 +54,44 @@ public class EditProController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String name = request.getParameter("name").trim();
-        String gmail = request.getParameter("gmail").trim();
-        String phone = request.getParameter("phone").trim();
-        
-        HttpSession session = request.getSession();
-        Account acc = new Account();
-        acc = (Account) session.getAttribute("account");
-        
-        EmployeeDBContext db = new EmployeeDBContext();
-        Employee e = db.getEmployee(acc.getUser());
-        
-        Employee newEmp = new Employee();
-        newEmp.setId(e.getId());
-        newEmp.setName(name);
-        newEmp.setPhone(phone);
-        newEmp.setGmail(gmail);
-        
-        EmployeeDBContext dbe = new EmployeeDBContext();
-        dbe.updateEmloyee(newEmp);
         String mess;
-        Employee check = db.getEmployee(acc.getUser());
-        if (check.getName().trim().equals(name) && check.getGmail().trim().equals(gmail) && check.getPhone().trim().equals(phone)) {
-            mess = "Save Succefull";
+        HttpSession session = request.getSession();
+        String name = request.getParameter("name").trim();
+        if (name.isEmpty()) {
+            mess = "Trường nhập không thể trống";
+            session.setAttribute("mess", mess);
+            response.sendRedirect("../profile/edit");
         } else {
-            mess = "Save Fail";
+            String gmail = request.getParameter("gmail").trim();
+            String phone = request.getParameter("phone").trim();
+
+            Account acc = new Account();
+            acc = (Account) session.getAttribute("account");
+
+            EmployeeDBContext db = new EmployeeDBContext();
+            Employee e = db.getEmployee(acc.getUser());
+
+            Employee newEmp = new Employee();
+            newEmp.setId(e.getId());
+            newEmp.setName(name);
+            newEmp.setPhone(phone);
+            newEmp.setGmail(gmail);
+
+            EmployeeDBContext dbe = new EmployeeDBContext();
+            dbe.updateEmloyee(newEmp);
+
+            Employee check = db.getEmployee(acc.getUser());
+
+            if (check.getName().trim().equals(name) && check.getGmail().trim().equals(gmail) && check.getPhone().trim().equals(phone)) {
+                mess = "Cập nhật thành công";
+            } else {
+                mess = "Lỗi hệ thống";
+            }
+
+            session.setAttribute("mess", mess);
+
+            response.sendRedirect("../profile/edit");
         }
-        
-        session.setAttribute("mess", mess);
-        
-        response.sendRedirect("../profile/edit");
-        
     }
 
     /**

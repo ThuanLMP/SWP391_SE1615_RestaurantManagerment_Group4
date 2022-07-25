@@ -23,6 +23,9 @@
     </head>
 
     <body>
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
         <div class="container">
@@ -91,7 +94,7 @@
 
                                 <form action="../editOrder" method="GET">
                                     <input name="id" value="B01" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -158,7 +161,7 @@
 
                                 <form action="../editOrder" method="GET">
                                     <input name="id" value="B02" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -230,7 +233,7 @@
 
                                 <form action="../editOrder" method="GET">
                                     <input name="id" value="B03" type="hidden"/>
-                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-success btn-raised px-4 py-25 w-100 text-600 mb-1" />
+                                    <input type="submit" value="Chỉnh sửa" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-100 text-600 mb-1" />
                                 </form>
 
                                 <form action="../payment" method="GET">
@@ -429,6 +432,7 @@
         <script type="text/javascript">
 
         </script>
+        <%}%>
     </body>
 
 </html>

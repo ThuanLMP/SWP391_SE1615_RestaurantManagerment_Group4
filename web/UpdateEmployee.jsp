@@ -16,11 +16,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <% if(session.getAttribute("account") == null){ 
-            request.getRequestDispatcher("login").forward(request, response);%>
-            <%}else{%>
+        <% if (session.getAttribute("account") == null) {
+                request.getRequestDispatcher("login").forward(request, response);%>
+        <%} else {%>
 
-             
+
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="home_admin">Restaurant-Admin</a>
@@ -38,10 +38,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Profile</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><hr class="dropdown-divider" /></li>
+
                         <li><a class="dropdown-item" href="changepass">Change Password</a></li>
                         <li><a class="dropdown-item" href="logout">Logout</a></li>
                     </ul>
@@ -49,11 +46,11 @@
             </ul>
         </nav>
         <div id="layoutSidenav">
-           <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">List Management</div>
+                            <div class="sb-sidenav-menu-heading">Quản lý danh sách</div>
                             <a class="nav-link" href="listOr">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Danh sách hóa đơn
@@ -62,7 +59,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Danh sách nhân viên
                             </a>
-                            <div class="sb-sidenav-menu-heading">Cash Management</div>
+                            <a class="nav-link" href="listAcc">
+                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                Danh sách tài khoản
+                            </a>
+                            <a class="nav-link" href="listMenu">
+                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                Danh sách món ăn
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Quản lý tài chính</div>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
                                 Doanh thu
@@ -75,19 +80,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
                                 Chi phí
                             </a>
-                            <div class="sb-sidenav-menu-heading">Orther</div>
-                            <a class="nav-link" href="listAcc">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                Tài khoản
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Nhập hàng
-                            </a>
-                            <a class="nav-link" href="feedback">
-                                <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
-                                Ý kiến
-                            </a>
                             <a class="nav-link" href="listSalary">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
                                 Lương chưa thanh toán
@@ -96,6 +88,17 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill"></i></div>
                                 Lương đã thanh toán
                             </a>
+                            <div class="sb-sidenav-menu-heading">Khác</div>
+
+                            <a class="nav-link" href="import">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Nhập hàng
+                            </a>
+                            <a class="nav-link" href="feedback">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comment"></i></div>
+                                Phản hồi
+                            </a>
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -106,116 +109,121 @@
             </div>
             <div id="layoutSidenav_content">
                 <section style="background-color: #eee;">
-  <div class="container py-5">
+                    <div class="container py-5">
 
-    <div class="row">
-     
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-              
-                  <c:if test ="${sessionScope.accUpdate != null}" >
-             <form action="updateEmp" method="POST" >
-                     
-             <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Id</p>
-              </div>
-              <div class="col-sm-9">
-                  <input class="text-muted mb-0" type="text" value="${sessionScope.accUpdate.id}" readonly maxlength="15"/>
-              </div>
-            </div>
-             
-              <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Name</p>
-              </div>
-              <div class="col-sm-9">
-                  <input class="text-muted mb-0" value="${sessionScope.accUpdate.name}" name="nameUpdate" maxlength="15" />
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                  <input class="text-muted mb-0" type="email" value="${sessionScope.accUpdate.gmail}" name="emailUpdate" maxlength="15"/>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                  <input class="text-muted mb-0" value="${sessionScope.accUpdate.phone}" type="tel" name="phoneUpdate" maxlength="15"/>
-              </div>
-            </div>
-              <hr>
-              <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Role</p>
-              </div>
-              <div class="col-sm-9">
+                        <div class="row">
 
-                  <select name ="ridUpdate">
-                      
-                       <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Manager')}">
-                          <option  selected ="selected" value="Manager">
-                        Manager
-                        </option>
-                        <option value="Chef">Chef</option>
-                      <option value="Cashier">Cashier</option>
-                      <option value="Waiter">Waiter</option>
-                      </c:if>
-                      <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Chef')}">
-                          <option value="Manager">Manager</option>
-                          <option  selected ="selected" value="Chef">
-                        Chef
-                        </option>                       
-                      <option value="Cashier">Cashier</option>
-                      <option value="Waiter">Waiter</option>
-                      </c:if>
-                      <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Cashier')}">
-                          <option value="Manager">Manager</option>
-                          <option value="Manager">Chef</option>
-                          <option  selected ="selected" value="Cashier">
-                        Cashier
-                        </option>
-                      <option value="Waiter">Waiter</option>
-                      </c:if>
-                      <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Waiter')}">
-                          <option value="Manager">Manager</option>
-                          <option value="Chef">Chef</option>
-                          <option value="Cashier">Cashier</option>
-                          <option  selected ="selected" value="Waiter">
-                        Waiter
-                        </option>
-                      
-                      </c:if>
-                      
-                      
-                  </select>
-              </div>
-            </div>
-                        
-            <hr>
-            <% if(request.getAttribute("messUpdate") != null){ %>
-                <p style="color: red">${requestScope.messUpdate}</p>
-            <%}else{%>
-            <%}%> 
-            <input class="btn btn-primary" type="submit" value="Update">
-             </form>
-                  </c:if>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
+                            <div class="col-lg-8">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+
+                                        <c:if test ="${sessionScope.accUpdate != null}" >
+                                            <form action="updateEmp" method="POST" >
+
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <p class="mb-0">ID</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input class="text-muted mb-0 input-form" type="text" value="${sessionScope.accUpdate.id}" readonly maxlength="15"/>
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <p class="mb-0">Tên</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input class="text-muted mb-0" value="${sessionScope.accUpdate.name}" name="nameUpdate" maxlength="15" />
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <p class="mb-0">Email</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input class="text-muted mb-0" type="email" value="${sessionScope.accUpdate.gmail}" name="emailUpdate" maxlength="15"/>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <p class="mb-0">SDT</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input class="text-muted mb-0" value="${sessionScope.accUpdate.phone}" type="tel" name="phoneUpdate" maxlength="15"/>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <p class="mb-0">Vai trò</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <select name ="ridUpdate">
+
+                                                            <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Manager')}">
+                                                                <option  selected ="selected" value="Manager">
+                                                                    Quản lý
+                                                                </option>
+                                                                <option value="Chef">Đầu bếp</option>
+                                                                <option value="Cashier">Thu ngân</option>
+                                                                <option value="Waiter">Phục vụ</option>
+                                                            </c:if>
+                                                            <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Chef')}">
+                                                                <option value="Manager">Quản lý</option>
+                                                                <option  selected ="selected" value="Chef">
+                                                                    Đầu bếp
+                                                                </option>                       
+                                                                <option value="Cashier">Thu ngân</option>
+                                                                <option value="Waiter">Phục vụ</option>
+                                                            </c:if>
+                                                            <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Cashier')}">
+                                                                <option value="Manager">Quản lý</option>
+                                                                <option value="Manager">Đầu bếp</option>
+                                                                <option  selected ="selected" value="Cashier">
+                                                                    Thu ngân
+                                                                </option>
+                                                                <option value="Waiter">Phục vụ</option>
+                                                            </c:if>
+                                                            <c:if test="${sessionScope.accUpdate.role.equalsIgnoreCase('Waiter')}">
+                                                                <option value="Manager">Quản lý</option>
+                                                                <option value="Chef">Đầu bếp</option>
+                                                                <option value="Cashier">Thu ngân</option>
+                                                                <option  selected ="selected" value="Waiter">
+                                                                    Phục vụ
+                                                                </option>
+
+                                                            </c:if>
+
+
+                                                        </select>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+                                                <% if (request.getAttribute("messUpdate") != null) { %>
+                                                <p style="color: red">${requestScope.messUpdate}</p>
+                                                <%} else {%>
+                                                <%}%> 
+                                                <div style="margin-left: 220px">
+                                                    <input class="btn btn-primary" type="submit" value="Cập nhật">
+                                                </div>
+
+                                            </form>
+                                        </c:if>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -225,7 +233,7 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-       <%}%>
+        <%}%>
     </body>
 </html>
 

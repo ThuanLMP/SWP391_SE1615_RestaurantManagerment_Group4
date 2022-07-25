@@ -84,6 +84,30 @@
         <servlet-name>DeleteEmployeeController</servlet-name>
         <servlet-class>Controller.DeleteEmployeeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListMenuController</servlet-name>
+        <servlet-class>Controller.ListMenuController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddMenuController</servlet-name>
+        <servlet-class>Controller.AddMenuController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMenuController</servlet-name>
+        <servlet-class>Controller.DeleteMenuController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMenuController</servlet-name>
+        <servlet-class>Controller.UpdateMenuController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RatingStarController</servlet-name>
+        <servlet-class>Controller.RatingStarController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>Controller.FeedbackController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeAdminController</servlet-name>
         <url-pattern>/home_admin</url-pattern>
@@ -167,6 +191,30 @@
     <servlet-mapping>
         <servlet-name>DeleteEmployeeController</servlet-name>
         <url-pattern>/deleteEmp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListMenuController</servlet-name>
+        <url-pattern>/listMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMenuController</servlet-name>
+        <url-pattern>/addMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMenuController</servlet-name>
+        <url-pattern>/deleteMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMenuController</servlet-name>
+        <url-pattern>/updateMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RatingStarController</servlet-name>
+        <url-pattern>/rate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

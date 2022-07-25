@@ -28,6 +28,9 @@
     </head>
 
     <body>
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
         <div class="container">
@@ -930,6 +933,7 @@
         <script type="text/javascript">
 
         </script>
+        <%}%>
     </body>
 
 </html>

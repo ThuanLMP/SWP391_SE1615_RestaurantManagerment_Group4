@@ -30,9 +30,12 @@
         %>
     </head>
     <body class="sb-nav-fixed">
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="home_admin">Nhà hàng-Admin</a>
+            <a class="navbar-brand ps-3" href="home_admin">Nhà hàng-Quản lý</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -44,8 +47,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        
-                        <li><a class="dropdown-item" href="logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="changepass">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -68,16 +71,20 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Danh sách tài khoản
                             </a>
+                             <a class="nav-link" href="listMenu">
+                                <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                                Danh sách món ăn
+                            </a>
                             <div class="sb-sidenav-menu-heading">Quản lý tài chính</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="home_admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
                                 Doanh thu
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="home_admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-coins"></i></div>
                                 Lợi nhuận
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="home_admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
                                 Chi phí
                             </a>
@@ -91,7 +98,7 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Khác</div>
                            
-                            <a class="nav-link" href="import">
+                            <a class="nav-link" href="home_admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Nhập hàng
                             </a>
@@ -275,5 +282,6 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <%}%>
     </body>
 </html>

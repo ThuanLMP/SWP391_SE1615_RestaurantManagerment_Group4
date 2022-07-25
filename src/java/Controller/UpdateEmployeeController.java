@@ -54,10 +54,10 @@ public class UpdateEmployeeController extends HttpServlet {
         if( request.getParameter("nameUpdate").trim().isEmpty() 
                 || request.getParameter("emailUpdate").trim().isEmpty() 
                 || request.getParameter("phoneUpdate").isEmpty() ){
-            request.setAttribute("messUpdate", "Input is not null");
+            request.setAttribute("messUpdate", "Trường nhập không thể trống");
         }
         else{
-            request.setAttribute("messUpdate", "Update employee successful");
+            request.setAttribute("messUpdate", "Cập nhật thành công");
             Employee e1 = new Employee(e.getId(), name, email, phone, role);
             emp.updateEmloyee(e1);
             session.setAttribute("accUpdate", null);

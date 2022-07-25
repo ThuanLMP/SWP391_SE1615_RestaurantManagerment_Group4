@@ -29,16 +29,18 @@
 
 </style>
     <body class="sb-nav-fixed" style="background: #212529">
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Restaurant-Employee</a>
+            <a class="navbar-brand ps-3" href="home_employee">Nhà hàng-Nhân viên</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    
                 </div>
             </form>
             <!-- Navbar-->
@@ -46,9 +48,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="profile">Profile</a></li>
-                        
-                        <li><a class="dropdown-item" href="logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="profile">Thông tin cá nhân</a></li>
+                        <li><a class="dropdown-item" href="changepass">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -59,7 +61,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Đặt bàn và Mua hàng</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="home/table_checking?">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Danh sách đặt bàn
                             </a>
@@ -67,16 +69,21 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Danh sách mua hàng
                             </a>
-                            <div class="sb-sidenav-menu-heading">Menu Management</div>
+                            <div class="sb-sidenav-menu-heading">Danh sách thực đơn</div>
                             <a class="nav-link" href="listMenu">
-                                <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
-                                Menu
+                                <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
+                                Thực đơn
                             </a>
-                            <div class="sb-sidenav-menu-heading">Other</div>
+                            <div class="sb-sidenav-menu-heading">Khác</div>
                             
                             <a class="nav-link" href="atten">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Điểm danh
+                            </a>
+                            
+                            <a class="nav-link" href="rate">
+                                <div class="sb-nav-link-icon"><i class="far fa-comment"></i></div>
+                                Đánh giá
                             </a>
                         </div>
                     </div>
@@ -196,6 +203,7 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <%}%>
     </body>
 </html>
 

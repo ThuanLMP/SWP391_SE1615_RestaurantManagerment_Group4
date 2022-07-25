@@ -37,8 +37,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="changepass">Change Password</a></li>
-                        <li><a class="dropdown-item" href="logout">Logout</a></li>
+                       
+                       
+                        <li><a class="dropdown-item" href="changepass">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -106,61 +108,44 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>                    
-                    <div class="card-body">                      
-                                <table id="datatablesSimple"  >                                    
-                                   <a  class="btn btn-dark" href ="addEmp">Thêm nhân viên</a>
-                                    <hr>
+                <main>   
+                    
+                    <div class="card-body">       
+                        
+                                <table id="datatablesSimple">
+                                    <c:if test="${sessionScope.aveStar != null}">
+                            Average of star is: ${aveStar}
+                        </c:if>
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Tên</th>
-                                            <th>Gmail</th>
-                                            <th>SDT</th>
-                                            <th>Vai trò</th>
-                                            <th>Khác</th>
+                                            <th>Rid</th>
+                                            <th>Table</th>
+                                            <th>Customer</th>
+                                            <th>Star</th>
+                                            <th>Date</th>
+                                            <th>Comment</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Tên</th>
-                                            <th>Gmail</th>
-                                            <th>SDT</th>
-                                            <th>Vai trò</th>
-                                            <th>Khác</th>
+                                            <th>Rid</th>
+                                            <th>Table</th>
+                                            <th>Customer</th>
+                                            <th>Star</th>
+                                            <th>Date</th>
+                                            <th>Comment</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                        
-                                    <c:forEach items="${listEmp}" var="e">
-                                        <tr>                                            
-                                            <td>${e.id}</td>
-                                            <td>${e.name}</td>
-                                            <td>${e.gmail}</td>
-                                            <td>${e.phone}</td>
-                                            <c:if test="${e.role == 'Manager'}" >
-                                            <td>
-                                                Quản lý
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Chef'}" >
-                                            <td>
-                                                Đầu bếp
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Cashier'}" >
-                                            <td>
-                                                Thu ngân
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Waiter'}">
-                                            <td>
-                                                Phục vụ
-                                            </td>
-                                            </c:if>
-                                            <td> <button class="btn btn-success" ><a onclick="deleteE('${e.id}')">Xóa</a></button>
-                                                <a class="btn btn-danger" href ="updateEmp?eid=${e.id}">Chỉnh sửa</a></td>
+                                    <c:forEach items="${listRate}" var="r">
+                                        <tr>                                          
+                                            <td>${r.rateid}</td>
+                                            <td>${r.tid}</td>
+                                            <td>${r.cus.name}</td>
+                                            <td>${r.star}</td>
+                                            <td>${r.date}</td>
+                                            <td>${r.comment}</td>                                         
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -190,16 +175,7 @@
         <script src="js/datatables-simple-demo.js"></script>
        <%}%>
     </body>
-    <script type="text/javascript">
-    function deleteE(id){
-        
-        if(confirm("Bạn có chắn chắn xóa nhân viên này ?")){
-            window.location="deleteEmp?eid="+id;
-        }
-        
-        
-    };
-</script> 
 </html>
+
 
 

@@ -32,7 +32,10 @@ public class ChangePassController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession();
+        session.removeAttribute("errorpass");
         request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+       
     }
 
     /**
@@ -47,6 +50,7 @@ public class ChangePassController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("errorpass");   
         String user = (String) session.getAttribute("userr");
         String pass = request.getParameter("pass");
         String newpass = request.getParameter("newpass");
@@ -55,16 +59,19 @@ public class ChangePassController extends HttpServlet {
         if (re_newpass.equalsIgnoreCase(newpass) && pass.equalsIgnoreCase((String) session.getAttribute("passs"))) {
             AccountDBContext a = new AccountDBContext();
             a.changePass(newpass, user);
-            String er = "Change successful";
+            String er = "Đổi mật khẩu thành công";
             request.setAttribute("error", er);
+            
             request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
             session.setAttribute("passs", newpass);
         } else if (pass.equalsIgnoreCase((String) session.getAttribute("passs")) == false) {
-            String er = "Password is not correct";
-            request.setAttribute("error", er);
-            request.getRequestDispatcher("Changepass.jsp").forward(request, response);
+            String er = "Mật khẩu không đúng";
+            session.setAttribute("errorpass", er);
+            //request.setAttribute("error", er);
+            response.sendRedirect("ChangePass.jsp");
+            //request.getRequestDispatcher("Changepass.jsp").forward(request, response);
         } else if (re_newpass.equalsIgnoreCase(newpass) == false) {
-            String er = "Re-new password must be equal new password";
+            String er = "Mật khẩu mới cần trùng với nhập lại mật khẩu";
             request.setAttribute("error", er);
             request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
         }

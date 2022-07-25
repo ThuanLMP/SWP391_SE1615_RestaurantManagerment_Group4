@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Restaurant Management -  Admin</title>
+        <title>Restaurant Management -  Employee</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
@@ -16,11 +17,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <% if(session.getAttribute("account") == null){ 
-            request.getRequestDispatcher("login").forward(request, response);%>
-            <%}else{%>
-
-             
+        <% if (session.getAttribute("account") == null) {
+                request.getRequestDispatcher("login").forward(request, response);%>
+        <%} else {%>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="home_admin">Nhà hàng-Quản lý</a>
@@ -37,14 +36,15 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="changepass">Change Password</a></li>
-                        <li><a class="dropdown-item" href="logout">Logout</a></li>
+                       
+                        <li><a class="dropdown-item" href="changepass">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -105,80 +105,66 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
-                <main>                    
-                    <div class="card-body">                      
-                                <table id="datatablesSimple"  >                                    
-                                   <a  class="btn btn-dark" href ="addEmp">Thêm nhân viên</a>
-                                    <hr>
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Tên</th>
-                                            <th>Gmail</th>
-                                            <th>SDT</th>
-                                            <th>Vai trò</th>
-                                            <th>Khác</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Tên</th>
-                                            <th>Gmail</th>
-                                            <th>SDT</th>
-                                            <th>Vai trò</th>
-                                            <th>Khác</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                       
-                                    <c:forEach items="${listEmp}" var="e">
-                                        <tr>                                            
-                                            <td>${e.id}</td>
-                                            <td>${e.name}</td>
-                                            <td>${e.gmail}</td>
-                                            <td>${e.phone}</td>
-                                            <c:if test="${e.role == 'Manager'}" >
-                                            <td>
-                                                Quản lý
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Chef'}" >
-                                            <td>
-                                                Đầu bếp
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Cashier'}" >
-                                            <td>
-                                                Thu ngân
-                                            </td>
-                                            </c:if>
-                                            <c:if test="${e.role == 'Waiter'}">
-                                            <td>
-                                                Phục vụ
-                                            </td>
-                                            </c:if>
-                                            <td> <button class="btn btn-success" ><a onclick="deleteE('${e.id}')">Xóa</a></button>
-                                                <a class="btn btn-danger" href ="updateEmp?eid=${e.id}">Chỉnh sửa</a></td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Website edit by Team 4</div>
-                            <div>
-                                <a href="#">Contact FB</a>
-                                &middot;
-                                <a href="#">Soure code GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+            
+                    
+    <div id="layoutSidenav_content">
+                <section style="background-color: #eee;">    
+        <div class="container py-5">
+
+    <div class="row">
+     
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+              <h4>Thêm món ăn</h4>
+              <form action="addMenu" method="POST" >
+                   <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">ID</p>
+              </div>
+              <div class="col-sm-9">
+                  <input class="text-muted mb-0" type="number" min="1" name="midAdd" />
+              </div>
+            </div>
+                 <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tên</p>
+              </div>
+              <div class="col-sm-9">
+                  <input class="text-muted mb-0" type="text" name="mnameAdd"  />
+              </div>
+            </div>
+                 <hr>
+                 <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Giá</p>
+              </div>
+              <div class="col-sm-9">
+                  <input class="text-muted mb-0" type="number" min="0" step="1000" name="mpriceAdd" value ="" />
+              </div>
+            </div>
+                 
+               <% if(request.getAttribute("messMenuAdd") != null){ %>
+                <p style="color: red">${requestScope.messMenuAdd}</p>
+            <%}else{%>
+            <%}%> 
+            
+            <div style="margin-left: 230px; margin-top: 40px">
+                 <button style="width: 130px" class="btn btn-primary" type="submit">Thêm</button>
+            </div>
+            
+           
+             </form>
+             
+          </div>
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
+            </section>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -188,18 +174,9 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-       <%}%>
+    <%}%>
     </body>
-    <script type="text/javascript">
-    function deleteE(id){
-        
-        if(confirm("Bạn có chắn chắn xóa nhân viên này ?")){
-            window.location="deleteEmp?eid="+id;
-        }
-        
-        
-    };
-</script> 
 </html>
+
 
 

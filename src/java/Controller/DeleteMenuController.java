@@ -5,23 +5,27 @@
  */
 package Controller;
 
-import Dao.EmployeeDBContext;
-import Model.Account;
-import Model.Employee;
+import Dao.MenuDBContext;
+import Model.Menu;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 /**
  *
  * @author ITACHI
  */
-public class ProfileController extends HttpServlet {
+public class DeleteMenuController extends HttpServlet {
+
+  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -32,18 +36,21 @@ public class ProfileController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.removeAttribute("mess");
-        Account acc = new Account();
-        acc = (Account) session.getAttribute("account");
-        EmployeeDBContext db = new EmployeeDBContext();
-        Employee e = db.getEmployee(acc.getUser());
-        request.setAttribute("employee", e);
-        request.getRequestDispatcher("Profile.jsp").forward(request, response);
+        MenuDBContext emp = new MenuDBContext();
+        int id = Integer.parseInt(request.getParameter("mid"));
+        emp.deleteMenu(id);
+        session.setAttribute("listMenu", null);
+        ArrayList<Menu> e = emp.getMenu();
+        session.setAttribute("listMenu", e);
+       response.sendRedirect("ListMenu.jsp");
     }
+
+
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

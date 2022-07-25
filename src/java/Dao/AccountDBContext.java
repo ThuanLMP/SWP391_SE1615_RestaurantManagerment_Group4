@@ -63,7 +63,7 @@ public class AccountDBContext extends DBContext {
         }
     }
     public void changePass(String pass, String user){
-        String sql="update Account sett password = ? where username = ?";
+        String sql="update Account set password = ? where username = ?";
         try{
             PreparedStatement st=connection.prepareStatement(sql);
             st.setString(1, pass);

@@ -25,6 +25,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,7 +45,8 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         HttpSession session = request.getSession();
+         session.removeAttribute("messorder");
         TableDBContext db = new TableDBContext();
         ArrayList<Table> tables = db.getTablesByStatus(true);
         request.setAttribute("tables", tables);
@@ -62,11 +64,11 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ProductDBContext dbp = new ProductDBContext();
         String table_draw = request.getParameter("table");
         TableDBContext dbt = new TableDBContext();
-        dbt.updateStatusTable(table_draw,"0");
+        
         Table tb = dbt.getTableById(table_draw);
         int seat = tb.getSeat();
 
@@ -127,6 +129,7 @@ public class OrderController extends HttpServlet {
          */
         // Get data Customer from website
         String nameCustomer = request.getParameter("name").trim();
+
         String gmailCustomer = request.getParameter("gmail").trim();
         String phoneCustomer = request.getParameter("phone").trim();
 
@@ -142,8 +145,13 @@ public class OrderController extends HttpServlet {
         Customer customer = new Customer();
 
         ArrayList<Customer> customers = dbc.getCustomers();
-
-        if (customerCheckPhone == null) {
+        HttpSession session = request.getSession();
+        if (nameCustomer.isEmpty()) {
+            session.setAttribute("messorder", "Vui lòng nhập tên khách hàng");
+            response.sendRedirect("order");
+        }
+        else{
+             if (customerCheckPhone == null) {
             customer.setId(customers.size() + 1);
             customer.setName(nameCustomer);
             customer.setPhone(phoneCustomer);
@@ -177,29 +185,29 @@ public class OrderController extends HttpServlet {
         order.setDate(Date.valueOf(date));
         order.setTime(Time.valueOf(time));
 
-        
-
         ArrayList<Product> product_items = new ArrayList<>();
-        
+
         for (Product p : products) {
             p.setSumPrice(p.getAmount() * p.getPrice());
             if (p.getAmount() != 0) {
                 product_items.add(p);
             }
         }
-        
-        double total=0;
+
+        double total = 0;
         for (Product p1 : product_items) {
-            total = total + p1.getSumPrice();           
+            total = total + p1.getSumPrice();
         }
-        
+        dbt.updateStatusTable(table_draw, "0");
         order.setTotal(total);
         dbo.insertOrder(order);
         Order_itemDBContext dboi = new Order_itemDBContext();
         dboi.insertOrderItems(order, product_items);
-        response.sendRedirect("../home/table_checking");
         
+        response.sendRedirect("../home/table_checking");
+        }
        
+
     }
 
     /**

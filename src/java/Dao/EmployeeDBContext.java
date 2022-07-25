@@ -63,22 +63,38 @@ public class EmployeeDBContext extends DBContext {
         return null;
     }
 
-    public void updateEmloyee(Employee emp) {
-
+    public void updateEmloyee(Employee e) {
+        String rid ="";
+        if(e.getRole().equalsIgnoreCase("Manager")){
+            rid = "R02";
+        }
+        if(e.getRole().equalsIgnoreCase("Chef")){
+            rid = "R03";
+        }
+        if(e.getRole().equalsIgnoreCase("Cashier")){
+            rid = "R04";
+        }
+        if(e.getRole().equalsIgnoreCase("Waiter")){
+            rid = "R05";
+        }
         try {
             String sql = "UPDATE Employee\n"
-                    + "SET ename = ?, gmail= ?,ephone= ?\n"
+                    + "SET ename = ?, gmail= ?,ephone= ?,rid =? \n"
                     + "WHERE eid = ?";
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, emp.getName());
-            st.setString(2, emp.getGmail());
-            st.setString(3, emp.getPhone());
-            st.setString(4, emp.getId());
+            st.setString(1, e.getName());
+            st.setString(2, e.getGmail());
+            st.setString(3, e.getPhone());
+            st.setString(4, rid);
+            st.setString(5, e.getId());
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+
+
+
 
     public int checkEid(String id) {
         int result = 0;
@@ -180,7 +196,6 @@ public class EmployeeDBContext extends DBContext {
             System.out.println(e);
         }
     }
-
 
 
 

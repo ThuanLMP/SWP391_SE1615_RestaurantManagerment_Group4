@@ -142,6 +142,9 @@
     </head>
 
     <body>
+        <% if(session.getAttribute("account") == null){ 
+            request.getRequestDispatcher("login").forward(request, response);%>
+            <%}else{%>
         <div class="container emp-profile">
 
             <div class="row">
@@ -297,7 +300,7 @@
                 </form> 
             </div>
         </div>
-
+<%}%>
     </body>
 
 </html>

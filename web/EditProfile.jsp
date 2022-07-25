@@ -64,13 +64,15 @@
                 border: solid 1px #BA68C8
             }
 
-            
+
         </style>
         <%  Employee emp = (Employee) request.getAttribute("employee");%>
     </head>
 
     <body>
-
+        <% if (session.getAttribute("account") == null) {
+        request.getRequestDispatcher("login").forward(request, response);%>
+        <%} else {%>
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
@@ -78,7 +80,7 @@
                         <form action="../profile" method="GET">
                             <button class="btn btn-primary profile-button" type="submit">Quay lại</button>
                         </form>
-                        
+
                     </div>
                 </div>
                 <div class="col-md-8 border-right">
@@ -86,12 +88,12 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Chỉnh sửa thông tin</h4>
                         </div>
-                        
+
                         <form action="edit" method="POST">
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <label class="labels">Tên</label> 
-                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>" pattern="^[a-zA-z]{1,15}" required>
+                                    <input type="text" maxlength="50" class="form-control" placeholder="Full name" name="name" value="<%=emp.getName()%>"  required>
                                 </div>
                             </div>
 
@@ -106,18 +108,18 @@
                                     <input type="Email" maxlength="50" class="form-control" placeholder="Enter email" name="gmail" value="<%=emp.getGmail()%>" required>
                                 </div>
                                 <div class="col-md-12">
-                                   
+
                                 </div>
                             </div>
                             <div class="row mt-3">
 
                             </div>
                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button> </div>
-                            <% 
+                            <%
                                 String mess = (String) session.getAttribute("mess");
-                                if(mess!=null){ %>
-                                <p><%=mess%></p>
-                                <%}
+                                if (mess != null) {%>
+                            <p style="color: red; font-size: 16px" ><%=mess%></p>
+                            <%}
                             %>
                         </form>
 
@@ -130,7 +132,7 @@
         </div>
 
 
-
+        <%}%>
     </body>
 
 </html>

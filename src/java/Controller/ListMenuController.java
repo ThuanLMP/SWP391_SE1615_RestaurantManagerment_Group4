@@ -5,9 +5,9 @@
  */
 package Controller;
 
-import Dao.EmployeeDBContext;
-import Model.Account;
-import Model.Employee;
+
+import Dao.MenuDBContext;
+import Model.Menu;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +21,33 @@ import javax.servlet.http.HttpSession;
  *
  * @author ITACHI
  */
-public class ProfileController extends HttpServlet {
+public class ListMenuController extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ListMenuController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ListMenuController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -32,18 +58,21 @@ public class ProfileController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
-        session.removeAttribute("mess");
-        Account acc = new Account();
-        acc = (Account) session.getAttribute("account");
-        EmployeeDBContext db = new EmployeeDBContext();
-        Employee e = db.getEmployee(acc.getUser());
-        request.setAttribute("employee", e);
-        request.getRequestDispatcher("Profile.jsp").forward(request, response);
+        session.setAttribute("listMenu", null);
+        MenuDBContext emp = new MenuDBContext();
+        ArrayList<Menu> e = emp.getMenu();
+        session.setAttribute("listMenu", e);
+        request.getRequestDispatcher("ListMenu.jsp").forward(request, response);
     }
+
+
+
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -56,7 +85,7 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**
